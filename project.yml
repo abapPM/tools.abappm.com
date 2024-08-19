@@ -2,4 +2,4 @@ packages:
   - name: v1
     actions:
       - name: get
-        runtime: 'nodejs:default'
+        runtime: 'nodejs:18'

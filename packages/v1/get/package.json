@@ -2,8 +2,9 @@
   "name": "certificate-fetcher",
   "version": "1.0.0",
   "description": "A web application to fetch SSL certificates for a domain",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "tsc -b",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +19,9 @@
   "license": "MIT",
   "dependencies": {
     "https": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.1",
+    "typescript": "^5.5.4"
   }
 }
