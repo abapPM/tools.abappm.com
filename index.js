@@ -1,11 +1,21 @@
 const express = require('express');
 const https = require('https');
 const pem = require('pem');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+// Rate limiter middleware
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 10, // Limit each IP to 10 requests per `window` (here, per minute)
+  message: { error: 'Too many requests, please try again later' }
+});
+
+app.use(limiter);
 
 app.get('/', (req, res) => {
   const domain = req.query.domain;
@@ -18,8 +28,11 @@ app.get('/', (req, res) => {
     return res.status(400).json({ error: 'Invalid domain format' });
   }
 
+  console.log(`Getting certificates for domain: ${domain}`);
+
   getCertificatesForDomain(domain, (error, certs) => {
     if (error) {
+      console.error(`Error retrieving certificates for ${domain}: ${error.message}`);
       return res.status(500).json({ error: `Failed to retrieve certificates: ${error.message}` });
     }
     res.json(certs);
@@ -44,8 +57,6 @@ function getCertificatesForDomain(domain, callback) {
     agent: false,
     rejectUnauthorized: false,
   };
-
-  console.log(`--- Getting certificates for ${domain}`);
 
   const req = https.request(options, (res) => {
     const certificate = res.socket.getPeerCertificate(true);
