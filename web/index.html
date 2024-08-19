@@ -27,7 +27,7 @@
       resultDiv.innerHTML = 'Loading...';
 
       try {
-        const response = await fetch(`%%FUNCTION_API_URL%%/?domain=${domain}`);
+        const response = await fetch(`/api/v1/get?domain=${domain}`);
         if (!response.ok) {
           throw new Error('Failed to fetch certificates');
         }

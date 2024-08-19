@@ -1,5 +1,5 @@
 packages:
-  - name: certificate
+  - name: v1
     actions:
-      - name: fetcher
+      - name: get
         runtime: 'nodejs:default'

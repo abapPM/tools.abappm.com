@@ -1,28 +1,33 @@
-spec:
+specs:
   alerts:
   - rule: DEPLOYMENT_FAILED
   - rule: DOMAIN_FAILED
+  features:
+  - buildpack-stack=ubuntu-22
   functions:
-  - git:
+  - github:
       branch: main
-      repo_clone_url: https://github.com/abapPM/certs.abappm.com
-    name: certs
-    routes:
-    - path: /api
+      repo: abapPM/certs.abappm.com
+    name: certs-api
     source_dir: /
-  name: certs-app
+  ingress:
+    rules:
+    - component:
+        name: certs-web
+      match:
+        path:
+          prefix: /
+    - component:
+        name: certs-api
+      match:
+        path:
+          prefix: /api
+  name: certs-abappm-com
+  region: fra
   static_sites:
-  - build_command: ./build.sh
-    environment_slug: html
-    envs:
-    - key: FUNCTION_API_URL
-      scope: BUILD_TIME
-      value: ${certs.PUBLIC_URL}
-    git:
+  - environment_slug: html
+    github:
       branch: main
-      repo_clone_url: https://github.com/abapPM/certs.abappm.com
-    name: certs-ui
-    output_dir: dist
-    routes:
-    - path: /
+      repo: abapPM/certs.abappm.com
+    name: certs-web
     source_dir: web
