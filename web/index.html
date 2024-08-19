@@ -29,7 +29,11 @@
       try {
         const response = await fetch(`/api/v1/get?domain=${domain}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch certificates');
+          if (response.error) {
+            throw new Error(response.error);
+          } else {
+            throw new Error('Failed api call');
+          }
         }
         const data = await response.json();
         resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
