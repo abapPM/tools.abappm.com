@@ -2,9 +2,9 @@
   "name": "certificate-fetcher",
   "version": "1.0.0",
   "description": "A web application to fetch SSL certificates for a domain",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node build/index.js"
   },
   "author": "Marc Bernard",
   "license": "MIT",
