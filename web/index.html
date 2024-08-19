@@ -27,7 +27,7 @@
       resultDiv.innerHTML = 'Loading...';
 
       try {
-        const response = await fetch(`/api/v1/get?domain=${domain}`);
+        const response = await fetch(`/api/v1/certificates?domain=${domain}`);
         const data = await response.json();
         resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
       } catch (error) {

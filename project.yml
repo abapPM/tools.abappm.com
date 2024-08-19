@@ -1,5 +1,5 @@
 packages:
   - name: v1
     actions:
-      - name: get
+      - name: certicates
         runtime: 'nodejs:18'

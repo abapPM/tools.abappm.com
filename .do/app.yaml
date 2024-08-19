@@ -6,27 +6,27 @@ features:
 functions:
 - github:
     branch: main
-    repo: abapPM/certs.abappm.com
-  name: certs-api
+    repo: abapPM/tools.abappm.com
+  name: tools-api
   source_dir: /
 ingress:
   rules:
   - component:
-      name: certs-web
+      name: tools-web
     match:
       path:
         prefix: /
   - component:
-      name: certs-api
+      name: tools-api
     match:
       path:
         prefix: /api
-name: certs-abappm-com
+name: tools-abappm-com
 region: fra
 static_sites:
 - environment_slug: html
   github:
     branch: main
-    repo: abapPM/certs.abappm.com
-  name: certs-web
+    repo: abapPM/tools.abappm.com
+  name: tools-web
   source_dir: web

@@ -2,8 +2,8 @@ import https from 'https';
 
 interface Certificate {
   issuer: any;
-  valid_from: string;
-  valid_to: string;
+  validFrom: string;
+  validTo: string;
   subject: any;
   cert: string;
 }
@@ -99,8 +99,8 @@ function getCertificatesForDomain(domain: string): Promise<Certificates> {
 function formatCertificate(cert: any): Certificate {
   return {
     issuer: cert.issuer,
-    valid_from: new Date(cert.valid_from).toISOString(),
-    valid_to: new Date(cert.valid_to).toISOString(),
+    validFrom: new Date(cert.valid_from).toISOString(),
+    validTo: new Date(cert.valid_to).toISOString(),
     subject: cert.subject,
     cert: cert.raw.toString('base64'),
   };
