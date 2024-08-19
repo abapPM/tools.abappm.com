@@ -1,0 +1,16 @@
+{
+  "name": "certificate-fetcher",
+  "version": "1.0.0",
+  "description": "A web application to fetch SSL certificates for a domain",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Marc Bernard",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "pem": "^1.14.8",
+    "express-rate-limit": "^7.4.0"
+  }
+}
