@@ -14,8 +14,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2",
-    "pem": "^1.14.8",
-    "express-rate-limit": "^7.4.0"
+    "https": "^1.0.0"
   }
 }

@@ -1,0 +1,28 @@
+spec:
+  alerts:
+  - rule: DEPLOYMENT_FAILED
+  - rule: DOMAIN_FAILED
+  functions:
+  - git:
+      branch: main
+      repo_clone_url: https://github.com/abapPM/certs.abappm.com
+    name: certs
+    routes:
+    - path: /api
+    source_dir: /
+  name: certs-app
+  static_sites:
+  - build_command: ./build.sh
+    environment_slug: html
+    envs:
+    - key: FUNCTION_API_URL
+      scope: BUILD_TIME
+      value: ${certs.PUBLIC_URL}
+    git:
+      branch: main
+      repo_clone_url: https://github.com/abapPM/certs.abappm.com
+    name: certs-ui
+    output_dir: dist
+    routes:
+    - path: /
+    source_dir: web

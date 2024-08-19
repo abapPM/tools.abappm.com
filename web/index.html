@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Fetcher</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #certificate-result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Certificate Fetcher</h1>
+  <form id="certificate-form">
+    <label for="domain">Enter Domain:</label>
+    <input type="text" id="domain" name="domain" required>
+    <button type="submit">Fetch Certificates</button>
+  </form>
+  
+  <div id="certificate-result"></div>
+
+  <script>
+    document.getElementById('certificate-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const domain = document.getElementById('domain').value;
+      const resultDiv = document.getElementById('certificate-result');
+      resultDiv.innerHTML = 'Loading...';
+
+      try {
+        const response = await fetch(`%%FUNCTION_API_URL%%/?domain=${domain}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch certificates');
+        }
+        const data = await response.json();
+        resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
+      }
+    });
+  </script>
+</body>
+</html>

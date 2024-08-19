@@ -1,4 +1,4 @@
-# certs.abappm.com
+# Certificate Fetcher
 
 A web application to fetch SSL certificates for a domain
 
