@@ -2,4 +2,4 @@ packages:
   - name: v1
     actions:
       - name: certificates
-        runtime: 'nodejs:18'
+        runtime: 'nodejs:20'

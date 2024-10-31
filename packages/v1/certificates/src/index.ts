@@ -1,4 +1,4 @@
-import https from 'https';
+import https from 'node:https';
 
 interface Certificate {
   issuer: any;
@@ -40,7 +40,7 @@ export async function main(event: any) {
       body: certs,
     };
   } catch (error: any) {
-    console.error(`Error retrieving certificates for ${domain}: ${error.message}`);
+    console.log(`Error retrieving certificates for ${domain}: ${error.message}`);
     return {
       statusCode: 500,
       body: { error: `Failed to retrieve certificates: ${error.message}` },
@@ -55,12 +55,13 @@ function isValidDomain(domain: string): boolean {
 }
 
 // Utility function to get certificates for a domain
-function getCertificatesForDomain(domain: string): Promise<Certificates> {
+export function getCertificatesForDomain(domain: string): Promise<Certificates> {
   const options = {
     host: domain,
     port: 443,
     agent: false,
     rejectUnauthorized: false,
+    timeout: 10000,
   };
 
   return new Promise((resolve, reject) => {

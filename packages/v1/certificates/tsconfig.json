@@ -1,16 +1,15 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "esModuleInterop": true,
-      "importHelpers": true,
-      "strict": true,
-      "module": "commonjs",
-      "outDir": "lib",      
-      "rootDir": "src",
-      "target": "es2019"
-    },
-    "include": [
-      "src/**/*"
-    ]
-  }
-  
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "strict": true,
+    "module": "commonjs",
+    "outDir": "lib",
+    "rootDir": "src",
+    "target": "es2019"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
