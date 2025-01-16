@@ -1,6 +1,6 @@
 # Contributing to apm
 
-apm welcomes your suggestions and contributions! Before opening your first issue or pull request, please review our [Code of Conduct](CODE_OF_CONDUCT.md) to understand how our community interacts in an inclusive and respectful manner.
+apm welcomes your suggestions and contributions! Before opening your first issue or pull request, please review our [Code of Conduct](https://github.com/abapPM/.github/blob/main/CODE_OF_CONDUCT.md) to understand how our community interacts in an inclusive and respectful manner.
 
 ## General Advice
 
@@ -27,6 +27,30 @@ Guidelines for bug reports:
 3. **Demonstrate the problem** &mdash; provide clear steps that can be reproduced.
 
 A good bug report should not leave others needing to chase you up for more information. Please try to be as detailed as possible in your report. What is your environment? What steps will reproduce the issue? What would you expect to be the outcome? All these details will help to fix any potential bugs.
+
+## Development Guidelines
+
+### Compatibility
+
+apm is targeted for SAP Basis 7.50 and higher, so the code should only contain expressions and statements that work on 7.50. abaplint will automatically check every pull request for language syntax that is not available on these releases.
+
+Lower releases might be supported using an automated downport.
+
+### Linting
+
+Pull requests are checked using [abaplint](https://abaplint.org) and must pass all configured [checks](../../abaplint.json) before they can be merged.
+
+### Pretty Printer
+
+Use pretty printer, keywords upper case + indentation. 
+
+### Prefixing
+
+apm does not use prefixing (hungarian notation) of variable names.
+
+### Internationalization (I18N)
+
+Currently, apm supports only the English language. Neither objects nor text literals are translated. Therefore, all objects shall be set to English as the original language. Text literals in the code shall be maintained in English. 
 
 ## Contribution Licensing
 

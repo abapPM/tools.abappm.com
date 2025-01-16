@@ -126,4 +126,4 @@ Made with :heart: in Canada
 
 Copyright 2024 apm.to Inc. <https://apm.to>
 
-Follow [@marcfbe](https://x.com/marcfbe) on X/Twitter
+Follow [@marcf.be](https://bsky.app/profile/marcf.be) on Bluesky or [@marcfbe](https://linkedin.com/in/marcfbe) on LinkedIn

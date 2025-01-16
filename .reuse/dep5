@@ -1,8 +1,0 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: apm Services
-Upstream-Contact: apm.to Inc. <hello@abappm.com>
-Source: https://github.com/abapPM/tools-abappm-com
-
-Files: *
-Copyright: 2024 apm.to Inc. <https://apm.to>
-License: MIT
