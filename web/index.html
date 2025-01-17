@@ -37,39 +37,6 @@
     <p style="font-weight:400;font-size:48px;color:#444">🎁 Free Tools for Open Source ABAP 🎁</p>
   </div>
 
-  <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
-
-  <form id="certificate-form">
-    <label for="domain">Enter Domain:</label><br />
-    <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
-    <button type="submit">Fetch Certificates</button>
-  </form>
-
-  <div id="certificate-result"></div>
-
-  <script>
-    document.getElementById('certificate-form').addEventListener('submit', async function (event) {
-      event.preventDefault();
-      const domain = document.getElementById('domain').value;
-
-      document.getElementById('shield-result').innerHTML = '';
-      document.getElementById('badge-result').innerHTML = '';
-      document.getElementById('badge-url').innerHTML = '';
-      document.getElementById('badge-markdown').innerHTML = '';
-
-      const resultDiv = document.getElementById('certificate-result');
-      resultDiv.innerHTML = 'Loading...';
-
-      try {
-        const response = await fetch(`/api/v1/certificates?domain=${domain}`);
-        const data = await response.json();
-        resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-      } catch (error) {
-        resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
-      }
-    });
-  </script>
-
   <h1 style="font-family:Righteous;color:#ff7700;">ABAP Version Badge</h1>
 
   <form id="shield-form">
@@ -109,6 +76,39 @@
         resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
       }
 
+    });
+  </script>
+
+  <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
+
+  <form id="certificate-form">
+    <label for="domain">Enter Domain:</label><br />
+    <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
+    <button type="submit">Fetch Certificates</button>
+  </form>
+
+  <div id="certificate-result"></div>
+
+  <script>
+    document.getElementById('certificate-form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const domain = document.getElementById('domain').value;
+
+      document.getElementById('shield-result').innerHTML = '';
+      document.getElementById('badge-result').innerHTML = '';
+      document.getElementById('badge-url').innerHTML = '';
+      document.getElementById('badge-markdown').innerHTML = '';
+
+      const resultDiv = document.getElementById('certificate-result');
+      resultDiv.innerHTML = 'Loading...';
+
+      try {
+        const response = await fetch(`/api/v1/certificates?domain=${domain}`);
+        const data = await response.json();
+        resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
+      }
     });
   </script>
 
