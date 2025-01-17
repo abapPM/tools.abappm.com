@@ -4,6 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Marc F. Bernard">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
   <title>apm Tools</title>
   <style>
     body {
@@ -24,12 +29,19 @@
   </script>
 </head>
 
-<body>
-  <h1>Certificate Fetcher</h1>
+<body link="#0044cc" vlink="#0044cc" style="background-color:#ccc;font-family:Open Sans,Arial;color:#000;top:100px;">
+  <div align="center">
+    <br />
+    <br />
+    <object data="apm_banner.svg" height="80"></object>
+    <p style="font-weight:400;font-size:48px;color:#444">🎁 Free Tools for Open Source ABAP 🎁</p>
+  </div>
+
+  <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
 
   <form id="certificate-form">
-    <label for="domain">Enter Domain:</label>
-    <input type="text" id="domain" name="domain" required>
+    <label for="domain">Enter Domain:</label><br />
+    <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
     <button type="submit">Fetch Certificates</button>
   </form>
 
@@ -52,13 +64,16 @@
     });
   </script>
 
-  <h1>Version Shield</h1>
+  <h1 style="font-family:Righteous;color:#ff7700;">Version Shield</h1>
 
   <form id="shield-form">
-    <label for="path">Enter Path to Version Constant:</label>
-    <input type="text" id="path" name="path" placeholder="github.com/$OWNER/$REPO/$PATH/$CONSTANT_NAME" required>
+    <label for="path">Enter Path to Version Constant:</label><br />
+    <input type="text" id="path" name="path" size="70" placeholder="github.com/$OWNER/$REPO/$PATH/$CONSTANT_NAME"
+      required>
     <button type="submit">Fetch Badge JSON</button>
   </form>
+
+  <div id="badge-result"></div>
 
   <div id="shield-result"></div>
 
@@ -73,9 +88,13 @@
         const response = await fetch(`/api/v1/version-shield-json/${path}`);
         const data = await response.json();
         resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+
+        const resultBadge = document.getElementById('badge-result');
+        resultBadge.innerHTML = `<img src="https://img.shields.io/endpoint?url=https://tools.abappm.com/api/v1/version-shield-json/${path}" />`;
       } catch (error) {
         resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
       }
+
     });
   </script>
 
