@@ -2,10 +2,10 @@ packages:
   - name: v1
     actions:
       - name: certificates
-        runtime: "nodejs:22"
+        runtime: "nodejs:18"
         limits:
           timeout: 10000
       - name: version-shield-json
         runtime: "nodejs:18"
         limits:
-          timeout: 10000
+          timeout: 5000
