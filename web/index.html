@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate Fetcher</title>
+  <title>apm Tools</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    #certificate-result { margin-top: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    #certificate-result {
+      margin-top: 20px;
+    }
   </style>
+  <script>
+    // Shield domain redirect logic
+    if (window.location.hostname === 'shield.abappm.com') {
+      const newUrl = 'https://tools.abappm.com/api/v1/version-shield-json' + window.location.pathname;
+      window.location.replace(newUrl);
+    }
+  </script>
 </head>
+
 <body>
   <h1>Certificate Fetcher</h1>
+
   <form id="certificate-form">
     <label for="domain">Enter Domain:</label>
     <input type="text" id="domain" name="domain" required>
     <button type="submit">Fetch Certificates</button>
   </form>
-  
+
   <div id="certificate-result"></div>
 
   <script>
-    document.getElementById('certificate-form').addEventListener('submit', async function(event) {
+    document.getElementById('certificate-form').addEventListener('submit', async function (event) {
       event.preventDefault();
       const domain = document.getElementById('domain').value;
       const resultDiv = document.getElementById('certificate-result');
@@ -35,5 +51,34 @@
       }
     });
   </script>
+
+  <h1>Version Shield</h1>
+
+  <form id="shield-form">
+    <label for="path">Enter Path to Version Constant:</label>
+    <input type="text" id="path" name="path" placeholder="github.com/$OWNER/$REPO/$PATH/$CONSTANT_NAME" required>
+    <button type="submit">Fetch Badge JSON</button>
+  </form>
+
+  <div id="shield-result"></div>
+
+  <script>
+    document.getElementById('shield-form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const path = document.getElementById('path').value;
+      const resultDiv = document.getElementById('shield-result');
+      resultDiv.innerHTML = 'Loading...';
+
+      try {
+        const response = await fetch(`/api/v1/version-shield-json/${path}`);
+        const data = await response.json();
+        resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
+      }
+    });
+  </script>
+
 </body>
+
 </html>
