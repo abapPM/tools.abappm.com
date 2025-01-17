@@ -5,3 +5,7 @@ packages:
         runtime: "nodejs:18"
         limits:
           timeout: 10000
+      - name: version-shield-json
+        runtime: "nodejs:18"
+        limits:
+          timeout: 10000

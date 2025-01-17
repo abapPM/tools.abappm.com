@@ -9,6 +9,11 @@ functions:
     repo: abapPM/tools.abappm.com
   name: tools-api
   source_dir: /
+- github:
+    branch: main
+    repo: abapPM/shield.abappm.com
+  name: version-shield-json
+  source_dir: /
 ingress:
   rules:
   - component:
@@ -18,6 +23,11 @@ ingress:
         prefix: /
   - component:
       name: tools-api
+    match:
+      path:
+        prefix: /api
+  - component:
+      name: version-shield-json
     match:
       path:
         prefix: /api

@@ -1,0 +1,34 @@
+ABAP package version shield
+===========================
+
+Legend
+------
+* : fixed
+! : changed
++ : added
+- : removed
+
+Important dev notes
+-------------------
+- node-fetch bind to version @2 due to ESM only support in version 3
+
+v1.0.3, 2022-03-21
+------------------
++ better error handling in fetching files
++ better handling of structures constants with "begin of"
+* support namespace char in filenames (#117) e.g. .../%23XYZ%23object.abap
+
+v1.0.2, 2021-08-14
+------------------
+! strictly follow semver.org version validation (e.g. 1.0 is not a valid version)
++ support version suffixes ("-pre", ...)
+* fix reference to real world example (mockup_loader)
+* move to node 14 in lambda and workflows
+
+v1.0.1, 2019-03-19
+------------------
++ read apack dependencies version (see issue #1 for reasons)
++ improve tests
+! use another XML parser
+! moved out of beta
+! better scripts
