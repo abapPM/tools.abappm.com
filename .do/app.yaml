@@ -11,7 +11,7 @@ functions:
   source_dir: /
 - github:
     branch: main
-    repo: abapPM/shield.abappm.com
+    repo: abapPM/tools.abappm.com
   name: version-shield-json
   source_dir: /
 ingress:
