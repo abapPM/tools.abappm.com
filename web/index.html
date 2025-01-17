@@ -51,6 +51,10 @@
     document.getElementById('certificate-form').addEventListener('submit', async function (event) {
       event.preventDefault();
       const domain = document.getElementById('domain').value;
+
+      document.getElementById('badge-result').innerHTML = '';
+      document.getElementById('shield-result').innerHTML = '';
+
       const resultDiv = document.getElementById('certificate-result');
       resultDiv.innerHTML = 'Loading...';
 
@@ -73,14 +77,20 @@
     <button type="submit">Fetch Badge JSON</button>
   </form>
 
-  <div id="badge-result"></div>
-
   <div id="shield-result"></div>
+
+  <br />
+  <div id="badge-result"></div>
+  <br />
 
   <script>
     document.getElementById('shield-form').addEventListener('submit', async function (event) {
       event.preventDefault();
       const path = document.getElementById('path').value;
+
+      document.getElementById('certificate-result').innerHTML = '';
+      document.getElementById('badge-result').innerHTML = '';
+
       const resultDiv = document.getElementById('shield-result');
       resultDiv.innerHTML = 'Loading...';
 
