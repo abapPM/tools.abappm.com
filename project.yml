@@ -2,6 +2,6 @@ packages:
   - name: v1
     actions:
       - name: certificates
-        runtime: "nodejs:18"
+        runtime: "nodejs:22"
         limits:
           timeout: 10000
