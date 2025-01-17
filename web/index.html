@@ -52,8 +52,10 @@
       event.preventDefault();
       const domain = document.getElementById('domain').value;
 
-      document.getElementById('badge-result').innerHTML = '';
       document.getElementById('shield-result').innerHTML = '';
+      document.getElementById('badge-result').innerHTML = '';
+      document.getElementById('badge-url').innerHTML = '';
+      document.getElementById('badge-markdown').innerHTML = '';
 
       const resultDiv = document.getElementById('certificate-result');
       resultDiv.innerHTML = 'Loading...';
@@ -79,11 +81,8 @@
 
   <div id="shield-result"></div>
 
-  <br />
   <div id="badge-result"></div>
-  <br />
   <div id="badge-url"></div>
-  <br />
   <div id="badge-markdown"></div>
 
   <script>
@@ -104,8 +103,8 @@
 
         const baddgeUrl = `https://img.shields.io/endpoint?url=https://tools.abappm.com/api/v1/version-shield-json/${path}`;
         document.getElementById('badge-result').innerHTML = `<img src="${baddgeUrl}" />`;
-        document.getElementById('badge-url').innerHTML = baddgeUrl;
-        document.getElementById('badge-markdown').innerHTML = `![Version](${baddgeUrl}&label=Version&color=blue)`;
+        document.getElementById('badge-url').innerHTML = `<pre>Badge URL:<br/>${baddgeUrl}</pre>`;
+        document.getElementById('badge-markdown').innerHTML = `<pre>Badge Markdown:<br/>![Version](${baddgeUrl}&label=Version&color=blue)</pre>`;
       } catch (error) {
         resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
       }
