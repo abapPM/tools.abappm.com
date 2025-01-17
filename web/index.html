@@ -82,6 +82,9 @@
   <br />
   <div id="badge-result"></div>
   <br />
+  <div id="badge-url"></div>
+  <br />
+  <div id="badge-markdown"></div>
 
   <script>
     document.getElementById('shield-form').addEventListener('submit', async function (event) {
@@ -99,8 +102,10 @@
         const data = await response.json();
         resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
-        const resultBadge = document.getElementById('badge-result');
-        resultBadge.innerHTML = `<img src="https://img.shields.io/endpoint?url=https://tools.abappm.com/api/v1/version-shield-json/${path}" />`;
+        const baddgeUrl = `https://img.shields.io/endpoint?url=https://tools.abappm.com/api/v1/version-shield-json/${path}`;
+        document.getElementById('badge-result').innerHTML = `<img src="${baddgeUrl}" />`;
+        document.getElementById('badge-url').innerHTML = baddgeUrl;
+        document.getElementById('badge-markdown').innerHTML = `![Version](${baddgeUrl}&label=Version&color=blue)`;
       } catch (error) {
         resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
       }
