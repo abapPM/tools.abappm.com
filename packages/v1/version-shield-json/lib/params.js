@@ -12,6 +12,8 @@ function unescape(str) {
 // or
 // /$TYPE/$OWNER/$REPO/$PATH/.apack-manifest.xml
 
+// TODO: $TYPE/$OWNER/$REPO/[-$BRANCH/]$PATH[/$CONSTANT_NAME]
+
 function parsePathParams({pathParameters}) {
     if (!pathParameters) throw Error('Unexpected path');
     if (!pathParameters.sourcePath) throw Error('Unexpected source path');

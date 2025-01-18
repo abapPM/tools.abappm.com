@@ -45,7 +45,6 @@ https://shield.abappm.com/bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap
 Alternative, if you have a .apack-manifest.xml file in your repository:
 
 ```
-
 Example:
 https://shield.abappm.com/github/abapGit/abapGit/.apack-manifest.xml/dependencies/abapGit
 ```

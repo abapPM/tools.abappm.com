@@ -61,12 +61,13 @@ async function handleEvent(event, context) {
 // Bitbucket: https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap
 
 function createUrlFromParams(branch, {type, owner, repo, file}) {
+    const url = ``;
     if (type === 'github') {
-        const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`;
+        url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`;
     } else if (type === 'gitlab') {
-        const url = `https://gitlab.com/${owner}/${repo}/-/raw/${branch}/${file}`;
+        url = `https://gitlab.com/${owner}/${repo}/-/raw/${branch}/${file}`;
     } else if (type === 'bitbucket') {
-        const url = `https://bitbucket.org/${owner}/${repo}/raw/${branch}/${file}`;
+        url = `https://bitbucket.org/${owner}/${repo}/raw/${branch}/${file}`;
     } else {
         throw Error('Unexpected url type');
     }
