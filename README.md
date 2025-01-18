@@ -22,21 +22,32 @@ Go to https://tools.abappm.com and you can use and test the services via an HTML
 
 ### ABAP Package Version Badge
 
-Endpoint for [shields.io](https://shields.io) compatible JSON.
+This is a service for the [shields.io](https://shields.io/badges/endpoint-badge) endpoint compatible JSON.
 
 #### Request
 
 ```
-https://tools.abappm.com/api/v1/version-shield-json/$TYPE/$OWNER/$REPO/$PATH/$CONSTANT_NAME
+https://shield.abappm.com/$TYPE/$OWNER/$REPO/[-$BRANCH/]$PATH[/$CONSTANT_NAME]
 
-$TYPE          = 'github' (only this for now)
-$OWNER         = Your GitHub organization or user name
-$REPO          = Your GitHub repository name
+$TYPE          = 'github', 'gitlab', or 'bitbucket' (open an issue if you need more)
+$OWNER         = Your organization or user name
+$REPO          = Your repository name
+$BRANCH        = Branch name prefixed with '-' (optional, 'master' by default)
 $PATH          = Path to ABAP file with version constant
 $CONSTANT_NAME = Name of the constant that contains the version (optional, 'version' by default)
 
+Examples:
+https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version
+https://shield.abappm.com/gitlab/fernandofurtado/abap-markdown/src/zmarkdown.clas.abap
+https://shield.abappm.com/bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap/c_version
+```
+
+Alternative, if you have a .apack-manifest.xml file in your repository:
+
+```
+
 Example:
-https://tools.abappm.com/api/v1/version-shield-json/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version
+https://shield.abappm.com/github/abapGit/abapGit/.apack-manifest.xml/dependencies/abapGit
 ```
 
 #### Response
@@ -52,6 +63,18 @@ Example:
 }
 ```
 
+To get the badge image, pass the URL from above to the img.shields.io endpoint. You can also customize the badge label and color (see [shields.io](https://shields.io/endpoint-badge) for more options):
+
+```
+https://img.shields.io/endpoint?url=https://shield.abappm.com/...
+or
+https://img.shields.io/endpoint?url=https://shield.abappm.com/...&label=version&color=blue
+```
+
+```
+Example:
+https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue
+```
 
 ### Certificate Fetcher
 

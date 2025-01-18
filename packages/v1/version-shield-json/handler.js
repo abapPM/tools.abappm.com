@@ -42,7 +42,7 @@ async function handleEvent(event, context) {
 
     const params = parsePathParams(event);
     const validatedParams = validateQueryParams(params);
-    const url = createUrlFromParams('master', validatedParams);
+    const url = createUrlFromParams('master', validatedParams); // TODO: get branch from params
     const srcData = await fetchResource(url);
     let version = (validatedParams.file === APACK_FILENAME)
         ? validatedParams.apackExtra === 'dependencies'
@@ -56,14 +56,22 @@ async function handleEvent(event, context) {
     return response;
 }
 
+// GitHub: https://raw.githubusercontent.com/abapGit/abapGit/refs/heads/main/src/zif_abapgit_version.intf.abap
+// GitLab: https://gitlab.com/fernandofurtado/abap-markdown/-/raw/master/src/zmarkdown.clas.abap
+// Bitbucket: https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap
+
 function createUrlFromParams(branch, {type, owner, repo, file}) {
     if (type === 'github') {
         const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`;
-        console.log('URL:', url);
-        return url;
+    } else if (type === 'gitlab') {
+        const url = `https://gitlab.com/${owner}/${repo}/-/raw/${branch}/${file}`;
+    } else if (type === 'bitbucket') {
+        const url = `https://bitbucket.org/${owner}/${repo}/raw/${branch}/${file}`;
     } else {
         throw Error('Unexpected url type');
     }
+    console.log('URL:', url);
+    return url;
 }
 
 function buildSuccessResponse(version) {

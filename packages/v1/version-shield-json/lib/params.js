@@ -7,6 +7,11 @@ function unescape(str) {
     return str.replace(/%23/g, '#'); // namespace delimiter
 }
 
+// Source path format: 
+// /$TYPE/$OWNER/$REPO/$PATH/$CONSTANT_NAME
+// or
+// /$TYPE/$OWNER/$REPO/$PATH/.apack-manifest.xml
+
 function parsePathParams({pathParameters}) {
     if (!pathParameters) throw Error('Unexpected path');
     if (!pathParameters.sourcePath) throw Error('Unexpected source path');
@@ -66,7 +71,7 @@ function validateQueryParams(params) {
     if (!params.repo) throw Error('Repository name not specified');
     if (!params.file) throw Error('Source file not specified');
 
-    const supportedTypes = ['github'];
+    const supportedTypes = ['github','gitlab','bitbucket'];
     if (!supportedTypes.includes(params.type)) throw Error('Repository type not supported');
 
     if ((params.apackExtra || params.apackExtraParam) && params.file !== APACK_FILENAME) throw Error('Apack params consistency failed');
