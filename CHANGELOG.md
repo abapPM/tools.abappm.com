@@ -8,17 +8,17 @@ and [ISO Date Format](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 ## [Unreleased]
 
+## Version [2.0.0] - 2025-01-18 
+
 ### Added
 
-### Changed
-
-### Fixed
-
+Added ABAP Package Version Badge.
 
 ## Version [1.0.0] - 2024-08-19
 
-Initial Release.
+Initial Release with Certificate Fetcher.
 
 
-[Unreleased]: https://github.com/abapPM/ABAP-.../compare/1.0.0...main
-[1.0.0]: https://github.com/abapPM/ABAP-.../releases/tag/1.0.0
+[Unreleased]: https://github.com/abapPM/tools.abappm.com/compare/2.0.0...main
+[2.0.0]: https://github.com/abapPM/tools.abappm.com/releases/tag/2.0.0
+[1.0.0]: https://github.com/abapPM/tools.abappm.com/releases/tag/1.0.0
