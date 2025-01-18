@@ -7,7 +7,7 @@ name: REUSE Compliance Check
 on: [push, pull_request]
 
 jobs:
-  reuse-compliance-check:
+  Reuse-Compliance-Check:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
