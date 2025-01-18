@@ -68,6 +68,8 @@ Example:
 }
 ```
 
+### Badge Image
+
 To get the badge image, pass the URL from above to the img.shields.io endpoint. You can also customize the badge label and color (see [shields.io](https://shields.io/endpoint-badge) for more options):
 
 ```
@@ -76,12 +78,13 @@ or
 https://img.shields.io/endpoint?url=https://shield.abappm.com/...&label=version&color=blue
 ```
 
-```
 Example:
-https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue
-```
 
 <img src="https://tools.abappm.com/abapgit-badge.svg" alt="abapgit version badge" />
+
+```
+https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue
+```
 
 ### Certificate Fetcher
 
