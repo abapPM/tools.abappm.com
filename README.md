@@ -35,25 +35,31 @@ $REPO          = Your repository name
 $BRANCH        = Branch name prefixed with '-' (optional, 'master' by default)
 $PATH          = Path to ABAP file with version constant
 $CONSTANT_NAME = Name of the constant that contains the version (optional, 'version' by default)
+```
 
 Examples:
+
+```
 https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version
 https://shield.abappm.com/gitlab/fernandofurtado/abap-markdown/src/zmarkdown.clas.abap
 https://shield.abappm.com/bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap/c_version
 ```
 
-Alternative, if you have a .apack-manifest.xml file in your repository:
+If your repository supports [APACK](https://docs.abapgit.org/user-guide/reference/apack.html) i.e. you have an `.apack-manifest.xml` file in your repository, you can also use the following format:
+
+Examples:
 
 ```
-Example:
-https://shield.abappm.com/github/abapGit/abapGit/.apack-manifest.xml/dependencies/abapGit
+https://shield.abappm.com/github/ABAP-Logger/ABAP-Logger/.apack-manifest.xml
+or
+https://shield.abappm.com/github/ABAP-Logger/demos/.apack-manifest.xml/dependencies/github.com/ABAP-Logger/ABAP-Logger
 ```
 
 #### Response
 
-```json
 Example:
 
+```json
 {
   "schemaVersion": 1,
   "label": "abap package version",
@@ -74,6 +80,8 @@ https://img.shields.io/endpoint?url=https://shield.abappm.com/...&label=version&
 Example:
 https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue
 ```
+
+<img src="https://tools.abappm.com/abapgit-badge.svg" alt="abapgit version badge" />
 
 ### Certificate Fetcher
 

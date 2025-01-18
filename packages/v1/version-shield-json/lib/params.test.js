@@ -4,13 +4,40 @@ const {
 } = require('./params');
 
 describe('regular Validator tests', () => {
-    test('should validate correct params', () => {
+    test('should validate correct params (github)', () => {
         const params = {
             type: 'github',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
             attr: 'version_attr',
+        };
+        const validated = validateQueryParams(params);
+        expect(validated).toEqual(params);
+    });
+
+    test('should validate correct params (gitlab)', () => {
+        const params = {
+            type: 'gitlab',
+            owner: 'fernandofurtado',
+            repo: 'abap-markdown',
+            branch: 'master',
+            file: 'src/zmarkdown.clas.abap',
+            attr: 'version',
+        };
+        const validated = validateQueryParams(params);
+        expect(validated).toEqual(params);
+    });
+
+    test('should validate correct params (bitbucket)', () => {
+        const params = {
+            type: 'bitbucket',
+            owner: 'marcfbe',
+            repo: 'abapgit',
+            branch: 'master',
+            file: 'src/zif_test.intf.abap',
+            attr: 'c_version',
         };
         const validated = validateQueryParams(params);
         expect(validated).toEqual(params);
@@ -21,6 +48,7 @@ describe('regular Validator tests', () => {
             type: 'github',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
         };
         const validated = validateQueryParams(params);
@@ -32,30 +60,35 @@ describe('regular Validator tests', () => {
             // type: 'github',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
         })).toThrow('Repository type not specified');
         expect(() => validateQueryParams({
             type: 'github',
             // owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
         })).toThrow('Owner');
         expect(() => validateQueryParams({
             type: 'github',
             owner: 'sbcgua',
             // repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
         })).toThrow('Repository name');
         expect(() => validateQueryParams({
             type: 'github',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             // file: 'src/zif.abap',
         })).toThrow('Source file');
         expect(() => validateQueryParams({
             type: 'xxx',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
         })).toThrow('Repository type not supported');
 
@@ -66,6 +99,7 @@ describe('regular Validator tests', () => {
             type: 'github',
             owner: 'sbcgua?',
             repo: 'repo_name',
+            branch: 'master',
             file: 'src/zif.abap',
         })).toThrow('[owner] has disallowed symbols');
     });
@@ -107,6 +141,43 @@ describe('Regular Parser tests', () => {
             owner: 'sbcgua',
             repo: 'repo_name',
             file: 'src/%23hello%23zif.abap', // unchanged but validation passed
+        });
+    });
+
+    test('should parse with branch', () => {
+        expect(parsePathParams({
+            pathParameters: {
+                sourcePath: 'github/sbcgua/repo_name/-next/src/zif.abap/attr_name'
+            },
+        })).toEqual({
+            type: 'github',
+            owner: 'sbcgua',
+            repo: 'repo_name',
+            branch: 'next',
+            file: 'src/zif.abap',
+            attr: 'attr_name',
+        });
+        expect(parsePathParams({
+            pathParameters: {
+                sourcePath: 'gitlab/sbcgua/repo_name/-test/src/zif.abap'
+            },
+        })).toEqual({
+            type: 'gitlab',
+            owner: 'sbcgua',
+            repo: 'repo_name',
+            branch: 'test',
+            file: 'src/zif.abap',
+        });
+        expect(parsePathParams({
+            pathParameters: {
+                sourcePath: 'bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap'
+            },
+        })).toEqual({
+            type: 'bitbucket',
+            owner: 'marcfbe',
+            repo: 'abapgit',
+            branch: 'main',
+            file: 'src/zif_test.intf.abap',
         });
     });
 
@@ -166,6 +237,7 @@ describe('apack Validator tests', () => {
             type: 'github',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: '.apack-manifest.xml',
         };
         const validated = validateQueryParams(params);
@@ -176,6 +248,7 @@ describe('apack Validator tests', () => {
             type: 'github',
             owner: 'sbcgua',
             repo: 'repo_name',
+            branch: 'master',
             file: '.apack-manifest.xml',
             apackExtra: 'dependencies',
             apackExtraParam: 'group/artifact'

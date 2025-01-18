@@ -4,6 +4,7 @@ jest.mock('https');
 const { PassThrough } = require('stream');
 const EventEmitter = require('events');
 const https = require('https');
+
 https.get.mockImplementation((url, handler) => {
     const resMock = new PassThrough();
     resMock.statusCode = 200;
@@ -33,6 +34,16 @@ https.get.mockImplementation((url, handler) => {
         resMock.write('  </DATA>');
         resMock.write(' </asx:values>');
         resMock.write('</asx:abap>');
+    } else if (url === 'https://gitlab.com/fernandofurtado/abap-markdown/-/raw/master/src/zmarkdown.clas.abap') {
+        resMock.write('interface zmarkdown.');
+        resMock.write('  constants VERSION type STRING value \'1.1.2\' ##NO_TEXT.');
+        resMock.write('endinterface.');
+    } else if (url === 'https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap') {
+        resMock.write('interface zif_test.');
+        resMock.write('  constants version type string value \'25.11.1968-beta.1\'.');
+        resMock.write('endinterface.');
+    } else {
+        resMock.statusCode = 404;
     }
     resMock.end();
 
@@ -41,7 +52,7 @@ https.get.mockImplementation((url, handler) => {
 });
 
 describe('test with path params', () => {
-    test('should work with normal request', async () => {
+    test('should work with normal request (github)', async () => {
         const event = {
             resource: '/version-shield-json/{sourcePath}',
             path: '/version-shield-json/github/sbcgua/mockup_loader/src/zif_mockup_loader.intf.abap/version',
@@ -72,6 +83,74 @@ describe('test with path params', () => {
 
         expect(console.log).toHaveBeenNthCalledWith(1, 'Requested path:', event.path);
         expect(console.log).toHaveBeenNthCalledWith(2, 'URL:', 'https://raw.githubusercontent.com/sbcgua/mockup_loader/master/src/zif_mockup_loader.intf.abap');
+        expect(console.log).toHaveBeenNthCalledWith(3, 'fetch statusCode: 200');
+    });
+
+    test('should work with normal request (gitlab)', async () => {
+        const event = {
+            resource: '/version-shield-json/{sourcePath}',
+            path: '/version-shield-json/gitlab/fernandofurtado/abap-markdown/src/zmarkdown.clas.abap/version',
+            pathParameters: {
+                sourcePath: 'gitlab/fernandofurtado/abap-markdown/src/zmarkdown.clas.abap/version'
+            },
+        };
+        const context = {};
+
+        global.console = {
+            log: jest.fn(),
+            error: jest.fn(),
+        };
+
+        await expect(handler.getShieldJson(event, context)).resolves.toEqual({
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'v1.1.2',
+                schemaVersion: 1,
+                label: 'abap package version',
+                color: 'orange',
+            }),
+        });
+
+        expect(console.log).toHaveBeenNthCalledWith(1, 'Requested path:', event.path);
+        expect(console.log).toHaveBeenNthCalledWith(2, 'URL:', 'https://gitlab.com/fernandofurtado/abap-markdown/-/raw/master/src/zmarkdown.clas.abap');
+        expect(console.log).toHaveBeenNthCalledWith(3, 'fetch statusCode: 200');
+    });
+
+    test('should work with normal request (bitbucket)', async () => {
+        const event = {
+            resource: '/version-shield-json/{sourcePath}',
+            path: '/version-shield-json/bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap/version',
+            pathParameters: {
+                sourcePath: 'bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap/version'
+            },
+        };
+        const context = {};
+
+        global.console = {
+            log: jest.fn(),
+            error: jest.fn(),
+        };
+
+        await expect(handler.getShieldJson(event, context)).resolves.toEqual({
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'v25.11.1968-beta.1',
+                schemaVersion: 1,
+                label: 'abap package version',
+                color: 'orange',
+            }),
+        });
+
+        expect(console.log).toHaveBeenNthCalledWith(1, 'Requested path:', event.path);
+        expect(console.log).toHaveBeenNthCalledWith(2, 'URL:', 'https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap');
         expect(console.log).toHaveBeenNthCalledWith(3, 'fetch statusCode: 200');
     });
 
@@ -123,7 +202,7 @@ describe('test with path params', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: 'Error: Unexpected version format',
+                message: 'Error: Unexpected version format (not semver): XYZ',
             }),
         });
         expect(console.error).toBeCalled();

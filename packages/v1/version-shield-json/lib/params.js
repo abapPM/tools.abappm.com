@@ -21,7 +21,7 @@ function parsePathParams({pathParameters}) {
     if (segments.length === 0) throw Error('Unexpected path');
     if (segments.length > 20) throw Error('Too many path segments');
 
-    const STATES = enumify(['TYPE', 'OWNER', 'REPO', 'FILE', 'ATTR', 'END']);
+    const STATES = enumify(['TYPE', 'OWNER', 'REPO', 'BRANCH', 'FILE', 'ATTR', 'END']);
     let expected = STATES.TYPE;
     let params = {};
     for (const seg of segments) {
@@ -37,6 +37,15 @@ function parsePathParams({pathParameters}) {
             break;
         case STATES.REPO:
             params.repo = seg;
+            expected++;
+            break;
+        case STATES.BRANCH:
+            if (seg[0] === '-') {
+                params.branch = seg.slice(1);
+            } else {
+                params.file = appendSeg(params.file);
+                if (/\.abap$/i.test(seg) || seg === APACK_FILENAME) expected++;
+            }
             expected++;
             break;
         case STATES.FILE:
@@ -64,6 +73,7 @@ function parsePathParams({pathParameters}) {
 function applyDefaults(params) {
     const final = {...params};
     if (!final.attr && final.file !== APACK_FILENAME) final.attr = 'version';
+    if (!final.branch) final.branch = 'master';
     return final;
 }
 
@@ -81,7 +91,7 @@ function validateQueryParams(params) {
     const supportedApackExtraActions = ['dependencies'];
     if (params.apackExtra && !supportedApackExtraActions.includes(params.apackExtra)) throw Error('Wrong apack extra action');
 
-    const allAttrs = ['type', 'owner', 'repo', 'file', 'attr', 'apackExtra', 'apackExtraParam'];
+    const allAttrs = ['type', 'owner', 'repo', 'branch','file', 'attr', 'apackExtra', 'apackExtraParam'];
     const allowedSymbols = /^[-_.,0-9a-zA-Z/]+$/;
     const allowedFilenameSymbols = /^[-_.,0-9a-zA-Z/#]+$/;
     for (const attr of allAttrs) {

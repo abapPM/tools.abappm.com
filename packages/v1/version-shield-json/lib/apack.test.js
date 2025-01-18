@@ -33,7 +33,7 @@ const XML_SAMPLE = `
 `;
 
 test('should getVersionFromApack', () => {
-    expect(getVersionFromApack(XML_SAMPLE)).toBe('0.2');
+    expect(getVersionFromApack(XML_SAMPLE)).toBe('0.2'); // Note: This version will fail with invalid format (in parse.js)
 });
 
 test('should fail on incorrect XML', () => {

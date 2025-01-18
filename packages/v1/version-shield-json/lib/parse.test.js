@@ -12,6 +12,12 @@ test('should parse correct input', () => {
 
     expect(parseSourceFile([
         'interface zif_mockup_loader.',
+        '  constants version type string value \'2.1.5\'.',
+        'endinterface.',
+    ].join('\n'), 'version')).toBe('2.1.5'); // Note: final output will be 'v2.1.5'
+
+    expect(parseSourceFile([
+        'interface zif_mockup_loader.',
         '  constants: version type string value \'v2.1.5\'. "#EC NOTEXT',
         'endinterface.',
     ].join('\n'), 'version')).toBe('v2.1.5');

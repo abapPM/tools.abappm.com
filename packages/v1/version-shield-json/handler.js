@@ -42,7 +42,7 @@ async function handleEvent(event, context) {
 
     const params = parsePathParams(event);
     const validatedParams = validateQueryParams(params);
-    const url = createUrlFromParams('master', validatedParams); // TODO: get branch from params
+    const url = createUrlFromParams(validatedParams);
     const srcData = await fetchResource(url);
     let version = (validatedParams.file === APACK_FILENAME)
         ? validatedParams.apackExtra === 'dependencies'
@@ -60,7 +60,7 @@ async function handleEvent(event, context) {
 // GitLab: https://gitlab.com/fernandofurtado/abap-markdown/-/raw/master/src/zmarkdown.clas.abap
 // Bitbucket: https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap
 
-function createUrlFromParams(branch, {type, owner, repo, file}) {
+function createUrlFromParams({type, owner, repo, branch, file}) {
     let url = ``;
     if (type === 'github') {
         url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`;
