@@ -1,13 +1,11 @@
 version = 1
 
 [[annotations]]
-path = "*"
-precedence = "aggregate"
+path = "**/*"
 SPDX-FileCopyrightText = "2024 apm.to Inc. <https://apm.to>"
 SPDX-License-Identifier = "MIT"
 
 [[annotations]]
-path = "packages/v1/version-shield-json/*"
-precedence = "override"
+path = "packages/v1/version-shield-json/**/*"
 SPDX-FileCopyrightText = "2020 Alexander Tsybulsky <https://github.com/sbcgua>"
 SPDX-License-Identifier = "ISC"
