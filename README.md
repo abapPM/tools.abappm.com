@@ -30,6 +30,22 @@ The service was created by [Alexander Tsybulsky](https://github.com/sbcgua) from
 
 You can find the original code on [GitHub](https://github.com/sbcgua/abap-package-version-shield) and the original documentation on [here](https://sbcgua.github.io/abap-package-version-shield).
 
+#### ABAP Code
+
+The service parses ABAP code in your repository to find the value of a version constant.
+
+Here's a typical example:
+
+```abap
+INTERFACE zif_abapgit_version PUBLIC.
+
+  CONSTANTS c_abap_version TYPE string VALUE '1.131.0'.
+
+ENDINTERFACE.
+```
+
+You may use different names for the constant or include the constant in a structure. It can also be in a different file for a class or program. Adjust the URL to point to the correct file and constant.
+
 #### Request
 
 ```
