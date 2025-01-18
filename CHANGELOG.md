@@ -12,7 +12,7 @@ and [ISO Date Format](https://www.iso.org/iso-8601-date-and-time-format.html).
 
 ### Added
 
-Added ABAP Package Version Badge.
+- New service: ABAP Package Version Badge.
 
 ## Version [1.0.0] - 2024-08-19
 
