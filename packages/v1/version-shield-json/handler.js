@@ -61,7 +61,7 @@ async function handleEvent(event, context) {
 // Bitbucket: https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap
 
 function createUrlFromParams(branch, {type, owner, repo, file}) {
-    const url = ``;
+    let url = ``;
     if (type === 'github') {
         url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file}`;
     } else if (type === 'gitlab') {

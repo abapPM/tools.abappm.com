@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/sbcgua/abap-package-version-shield.git"
   },
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Custom handler for shields.io to display abap package version",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,9 @@
     "lint": "eslint . lib"
   },
   "author": "Alexander Tsybulsky",
+  "engines": {
+    "node": ">=18"
+  },
   "license": "ISC",
   "devDependencies": {
     "eslint": "^9.18.0",
