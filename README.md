@@ -24,6 +24,12 @@ Go to https://tools.abappm.com and you can use and test the services via an HTML
 
 This is a service for the [shields.io](https://shields.io/badges/endpoint-badge) endpoint compatible JSON.
 
+<a href="https://supportukrainenow.org/"><img src="Ukraine-heart-shape-flag.svg" height="25" alt="Support Ukraine"></a>
+
+The service was created by [Alexander Tsybulsky](https://github.com/sbcgua) from Ukraine. Please [support Ukraine](https://war.ukraine.ua/support-ukraine/)!
+
+You can find the original code on [GitHub](https://github.com/sbcgua/abap-package-version-shield) and the original documentation on [here](https://sbcgua.github.io/abap-package-version-shield).
+
 #### Request
 
 ```
