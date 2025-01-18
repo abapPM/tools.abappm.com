@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 The project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 and [ISO Date Format](https://www.iso.org/iso-8601-date-and-time-format.html).
 
-## [Unreleased]
+See [Unreleased Changes] for the latest updates.
 
 ## Version [2.0.0] - 2025-01-18 
 
@@ -19,6 +19,6 @@ and [ISO Date Format](https://www.iso.org/iso-8601-date-and-time-format.html).
 Initial Release with Certificate Fetcher.
 
 
-[Unreleased]: https://github.com/abapPM/tools.abappm.com/compare/2.0.0...main
+[Unreleased Changes]: https://github.com/abapPM/tools.abappm.com/compare/2.0.0...main
 [2.0.0]: https://github.com/abapPM/tools.abappm.com/releases/tag/2.0.0
 [1.0.0]: https://github.com/abapPM/tools.abappm.com/releases/tag/1.0.0
