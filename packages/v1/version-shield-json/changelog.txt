@@ -12,6 +12,13 @@ Important dev notes
 -------------------
 - node-fetch bind to version @2 due to ESM only support in version 3
 
+v1.1.0, 2025-01-18
+------------------
++ Added support for GitLab and Bitbucket
++ Added support for branch name in URL
+- Removed lodash dependency
+* Bumped all dependencies to the latest versions
+
 v1.0.3, 2022-03-21
 ------------------
 + better error handling in fetching files
