@@ -15,14 +15,6 @@
       margin-top: 20px;
     }
   </style>
-  <script>
-    // Shield domain redirect logic
-    if (window.location.hostname === 'shield.abappm.com' &&
-        window.location.pathname.substring(1).startsWith('github.com')) {
-      const newUrl = 'https://tools.abappm.com/api/v1/version-shield-json' + window.location.pathname;
-      window.location.replace(newUrl);
-    }
-  </script>
 </head>
 
 <body>

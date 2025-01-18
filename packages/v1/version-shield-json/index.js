@@ -5,6 +5,12 @@ exports.main = main;
 const handler = require('./handler');
 
 async function main(event) {
+    // Test
+    return {
+        statusCode: 200,
+        body: event.http.path
+    }
+
     const http_path = event.http.path.replace(/^\//, '');
     const shield_event = {
         resource: '/version-shield-json/{sourcePath}',

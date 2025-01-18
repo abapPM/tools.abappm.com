@@ -16,9 +16,42 @@ Note: This is a free service with limited performance and scalability.
 
 ## Web Interface
 
-Go to https://tools.abappm.com and you can use the services via an HTML interface.
+Go to https://tools.abappm.com and you can use and test the services via an HTML interface.
 
 ## API
+
+### ABAP Package Version Badge
+
+Endpoint for [shields.io](https://shields.io) compatible JSON.
+
+#### Request
+
+```
+https://tools.abappm.com/api/v1/version-shield-json/$TYPE/$OWNER/$REPO/$PATH/$CONSTANT_NAME
+
+$TYPE          = 'github' (only this for now)
+$OWNER         = Your GitHub organization or user name
+$REPO          = Your GitHub repository name
+$PATH          = Path to ABAP file with version constant
+$CONSTANT_NAME = Name of the constant that contains the version (optional, 'version' by default)
+
+Example:
+https://tools.abappm.com/api/v1/version-shield-json/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version
+```
+
+#### Response
+
+```json
+Example:
+
+{
+  "schemaVersion": 1,
+  "label": "abap package version",
+  "message": "1.131.0",
+  "color": "orange"
+}
+```
+
 
 ### Certificate Fetcher
 
@@ -126,4 +159,4 @@ Made with :heart: in Canada
 
 Copyright 2024 apm.to Inc. <https://apm.to>
 
-Follow [@marcf.be](https://bsky.app/profile/marcf.be) on Bluesky or [@marcfbe](https://linkedin.com/in/marcfbe) on LinkedIn
+Follow [@marcf.be](https://bsky.app/profile/marcf.be) on Bluesky and [@marcfbe](https://linkedin.com/in/marcfbe) on LinkedIn
