@@ -38,9 +38,9 @@
       Tsybulsky</a>
     from Ukraine. Please <a href="https://war.ukraine.ua/support-ukraine/">support Ukraine</a>!</p>
 
-    <p><strong>Build your badge</strong> (<a
+    <p><strong>Build your badge (<a
         href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
-        target="_blank">documentation</a>):</p>
+        target="_blank">documentation</a>):</strong></p>
 
     <form id="shield-form">
       <table width="900px" border="1" style="font-size:11px">
@@ -125,9 +125,9 @@
 
           const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
           document.getElementById('badge-result').innerHTML =
-            `<pre>Badge Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
+            `<pre>Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
           document.getElementById('badge-markdown').innerHTML =
-            `<pre>Badge Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
+            `<pre>Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
         } catch (error) {
           document.getElementById('badge-result').innerHTML = `<span style="color: red;">${error.message}</span>`;
         }
@@ -137,10 +137,11 @@
 
     <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
 
+    <p><strong>Enter domain: (<a
+      href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
+      target="_blank">documentation</a>):</strong></p>
+      
     <form id="certificate-form">
-      <label for="domain">Enter Domain (<a
-          href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
-          target="_blank">documentation</a>):</label><br />
       <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
       <button type="submit">Fetch Certificates</button>
     </form>
