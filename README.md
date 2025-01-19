@@ -14,6 +14,11 @@ The services are implemented as serverless functions and intended for easy consu
 
 Note: This is a free service with limited performance and scalability.
 
+## Services
+
+- [ABAP Package Version Badge](#abap-package-version-badge)
+- [Certificate Fetcher](#certificate-fetcher)
+
 ## ABAP Package Version Badge
 
 This is a service for the [shields.io](https://shields.io/badges/endpoint-badge) endpoint compatible JSON.
@@ -31,16 +36,20 @@ The service parses ABAP code in your repository to find the value of a version c
 Here's a typical example:
 
 ```abap
-INTERFACE zif_abapgit_version PUBLIC.
-
-  CONSTANTS c_abap_version TYPE string VALUE '1.131.0'.
-
+INTERFACE zif_my_project_version PUBLIC.
+  CONSTANTS version TYPE string VALUE '3.2.1'.
 ENDINTERFACE.
 ```
 
-You may use different names for the constant or include the constant in a structure. It can also be in a different file for a class or program. Adjust the URL to point to the correct file and constant.
+### TL;DR
 
-### Request
+Markdown for creating a ABAP Package Version Badge:
+
+```
+![Version](https://img.shields.io/endpoint?url=https://shield.abappm.com/github/owner/repo/src/zif_my_project_version.intf.abap)
+```
+
+### API Request
 
 ```
 https://shield.abappm.com/$TYPE/$OWNER/$REPO/[-$BRANCH/]$PATH[/$CONSTANT_NAME]
@@ -74,7 +83,7 @@ or
 https://shield.abappm.com/github/ABAP-Logger/demos/.apack-manifest.xml/dependencies/github.com/ABAP-Logger/ABAP-Logger
 ```
 
-### Response
+### API Response
 
 Example:
 
@@ -103,8 +112,14 @@ Example:
 
 ```
 https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue
+or as markdown 
+![Version](https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue)
 ```
 
+> [!IMPORTANT]
+> If you are refering to a namespaced object, all #-symbols in the URL have to be encoded with `%2523`.
+> Example: `https://img.shields.io/endpoint?url=https://shield.abappm.com/github/Marc-Bernard-Tools/MBT-Listcube/src/%2523mbtools%2523cl_tool_bw_listcube.clas.abap`
+ 
 ### Web Interface
 
 You can test the services via an HTML interface at https://tools.abappm.com.
@@ -113,7 +128,7 @@ You can test the services via an HTML interface at https://tools.abappm.com.
 
 Easy way to retrieve the SSL certificates required to connect to a domain via SSL.
 
-### Request
+### API Request
 
 Pass the domain name as a parameter to the following URL:
 
@@ -121,7 +136,7 @@ Pass the domain name as a parameter to the following URL:
 curl -X GET https://tools.abappm.com/api/v1/certificates?domain=example.com
 ```
 
-### Response
+### API Response
 
 The result of the call includes the certificate of the domain server as well as the root and any intermediate certificates.
 
