@@ -14,13 +14,7 @@ The services are implemented as serverless functions and intended for easy consu
 
 Note: This is a free service with limited performance and scalability.
 
-## Web Interface
-
-Go to https://tools.abappm.com and you can use and test the services via an HTML interface.
-
-## API
-
-### ABAP Package Version Badge
+## ABAP Package Version Badge
 
 This is a service for the [shields.io](https://shields.io/badges/endpoint-badge) endpoint compatible JSON.
 
@@ -30,7 +24,7 @@ The service was created by [Alexander Tsybulsky](https://github.com/sbcgua) from
 
 You can find the original code on [GitHub](https://github.com/sbcgua/abap-package-version-shield) and the original documentation on [here](https://sbcgua.github.io/abap-package-version-shield).
 
-#### ABAP Code
+### ABAP Code
 
 The service parses ABAP code in your repository to find the value of a version constant.
 
@@ -46,7 +40,7 @@ ENDINTERFACE.
 
 You may use different names for the constant or include the constant in a structure. It can also be in a different file for a class or program. Adjust the URL to point to the correct file and constant.
 
-#### Request
+### Request
 
 ```
 https://shield.abappm.com/$TYPE/$OWNER/$REPO/[-$BRANCH/]$PATH[/$CONSTANT_NAME]
@@ -57,6 +51,8 @@ $REPO          = Your repository name
 $BRANCH        = Branch name prefixed with '-' (optional, 'master' by default)
 $PATH          = Path to ABAP file with version constant
 $CONSTANT_NAME = Name of the constant that contains the version (optional, 'version' by default)
+
+All #-symbols in the URL have to be encoded with %23.
 ```
 
 Examples:
@@ -65,6 +61,7 @@ Examples:
 https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version
 https://shield.abappm.com/gitlab/fernandofurtado/abap-markdown/src/zmarkdown.clas.abap
 https://shield.abappm.com/bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap/c_version
+https://shield.abappm.com/github/Marc-Bernard-Tools/MBT-Listcube/src/%23mbtools%23cl_tool_bw_listcube.clas.abap
 ```
 
 If your repository supports [APACK](https://docs.abapgit.org/user-guide/reference/apack.html) i.e. you have an `.apack-manifest.xml` file in your repository, you can also use the following format:
@@ -77,7 +74,7 @@ or
 https://shield.abappm.com/github/ABAP-Logger/demos/.apack-manifest.xml/dependencies/github.com/ABAP-Logger/ABAP-Logger
 ```
 
-#### Response
+### Response
 
 Example:
 
@@ -108,11 +105,15 @@ Example:
 https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue
 ```
 
-### Certificate Fetcher
+### Web Interface
+
+You can test the services via an HTML interface at https://tools.abappm.com.
+
+## Certificate Fetcher
 
 Easy way to retrieve the SSL certificates required to connect to a domain via SSL.
 
-#### Request
+### Request
 
 Pass the domain name as a parameter to the following URL:
 
@@ -120,7 +121,7 @@ Pass the domain name as a parameter to the following URL:
 curl -X GET https://tools.abappm.com/api/v1/certificates?domain=example.com
 ```
 
-#### Response
+### Response
 
 The result of the call includes the certificate of the domain server as well as the root and any intermediate certificates.
 
@@ -204,13 +205,23 @@ The result of the call includes the certificate of the domain server as well as 
 }
 ```
 
+### Web Interface
+
+You can test the services via an HTML interface at https://tools.abappm.com.
+
 ## Contributions
 
 All contributions are welcome! Read our [Contribution Guidelines](CONTRIBUTING.md), fork this repo, and create a pull request.
 
+## Attribution
+
+This project uses the following open source projects. Please support these great projects!
+
+- [ABAP-Package-Version-Shield](https://github.com/sbcgua/abap-package-version-shield), Alexander Tsybulsky, [ISC](https://github.com/sbcgua/abap-package-version-shield/blob/master/package.json)
+
 ## About
 
-Made with :heart: in Canada
+Made with ❤️ in Canada
 
 Copyright 2024 apm.to Inc. <https://apm.to>
 
