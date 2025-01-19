@@ -36,13 +36,36 @@
       alt="Support Ukraine"></a> The service was created by <a href="https://github.com/sbcgua">Alexander Tsybulsky</a>
   from Ukraine. Please <a href="https://war.ukraine.ua/support-ukraine/">support Ukraine</a>!</p>
 
+  <p>Build your badge (* = mandatory, <a
+      href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
+      target="_blank">documentation</a>):</p>
+
   <form id="shield-form">
-    <label for="path">Enter Path to Version Constant (<a
-        href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
-        target="_blank">documentation</a>):</label><br />
-    <input type="text" id="path" name="path" size="70"
-      placeholder="(github|gitlab|bitbucket)/$OWNER/$REPO/[-$BRANCH/]$PATH[/$CONSTANT_NAME]" required>
-    <button type="submit">Fetch Badge JSON and Image</button>
+    <table border="0">
+      <tr>
+        <td>Platform *:</td>
+        <td>Repository *:</td>
+        <td>Branch:</td>
+        <td>Path *:</td>
+        <td>Constant Name:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <select id="platform" name="platform" required>
+            <option value="">Select Platform</option>
+            <option value="github">GitHub</option>
+            <option value="gitlab">GitLab</option>
+            <option value="bitbucket">Bitbucket</option>
+          </select>
+        </td>
+        <td><input type="text" id="repo" name="repo" placeholder="owner/repository" required></td>
+        <td><input type="text" id="branch" name="branch" placeholder="branch"></td>
+        <td><input type="text" id="path" name="path" placeholder="path" required></td>
+        <td><input type="text" id="constant" name="constant" placeholder="constant"></td>
+        <td><button type="submit">Fetch Badge JSON and Image</button></td>
+      </tr>
+    </table>
   </form>
 
   <div id="shield-result"></div>
@@ -53,7 +76,34 @@
   <script>
     document.getElementById('shield-form').addEventListener('submit', async function (event) {
       event.preventDefault();
+      const platform = document.getElementById('platform').value;
+      const repo = document.getElementById('repo').value;
+      let branch = document.getElementById('branch').value;
+      if (branch !== '') {
+        branch = '/-' + branch;
+      }
       const path = document.getElementById('path').value;
+      let constant = document.getElementById('constant').value;
+      if (constant !== '') {
+        constant = '/' + constant;
+      }
+
+      if (platform === '') {
+        alert('Please select a platform');
+        return;
+      }
+
+      if (repo === '') {
+        alert('Please enter a repository');
+        return;
+      }
+
+      if (path === '') {
+        alert('Please enter a path');
+        return;
+      }
+
+      const url = `/${platform}/${repo}${branch}/${path}${constant}`.replace(/#/g, '%23');
 
       document.getElementById('certificate-result').innerHTML = '';
       document.getElementById('shield-result').innerHTML = '';
@@ -65,14 +115,14 @@
       resultDiv.innerHTML = 'Loading...';
 
       try {
-        const response = await fetch(`/${path}`);
+        const response = await fetch(url);
         const data = await response.json();
         resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
-        const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com/${path}`;
+        const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com/${url}`.replace(/%/g, '%25');
         document.getElementById('badge-result').innerHTML = `<img src="${baddgeUrl}" />`;
         document.getElementById('badge-url').innerHTML = `<pre>Badge URL:<br/>${baddgeUrl}</pre>`;
-        document.getElementById('badge-markdown').innerHTML = `<pre>Badge Markdown:<br/>![Version](${baddgeUrl}&label=Version&color=blue)</pre>`;
+        document.getElementById('badge-markdown').innerHTML = `<pre>Badge Markdown:<br/>![Version](${baddgeUrl})</pre>`;
       } catch (error) {
         resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
       }
