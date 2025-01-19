@@ -1,7 +1,7 @@
 ![Version](https://img.shields.io/github/v/release/abapPM/tools.abappm.com?label=Version&color=blue)
 
-[![License](https://img.shields.io/github/license/abapPM/tools.abappm.com?label=License&color=green)](LICENSE)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?color=green)](https://github.com/abapPM/.github/blob/main/CODE_OF_CONDUCT.md)
+[![License](https://img.shields.io/github/license/abapPM/tools.abappm.com?label=License&color=success)](LICENSE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?color=success)](https://github.com/abapPM/.github/blob/main/CODE_OF_CONDUCT.md)
 [![REUSE Status](https://api.reuse.software/badge/github.com/abapPM/tools.abappm.com)](https://api.reuse.software/info/github.com/abapPM/tools.abappm.com)
 
 # apm Services

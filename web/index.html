@@ -36,18 +36,26 @@
       alt="Support Ukraine"></a> The service was created by <a href="https://github.com/sbcgua">Alexander Tsybulsky</a>
   from Ukraine. Please <a href="https://war.ukraine.ua/support-ukraine/">support Ukraine</a>!</p>
 
-  <p>Build your badge (* = mandatory, <a
+  <p><strong>Build your badge</strong> (<a
       href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
       target="_blank">documentation</a>):</p>
 
   <form id="shield-form">
     <table border="0">
       <tr>
-        <td>Platform *:</td>
-        <td>Repository *:</td>
+        <td>Platform:</td>
+        <td>Repository:</td>
         <td>Branch:</td>
-        <td>Path *:</td>
+        <td>Path:</td>
         <td>Constant Name:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>github</td>
+        <td>abapGit/abapGit</td>
+        <td>main</td>
+        <td>src/zif_abapgit_version.intf.abap</td>
+        <td>c_abap_version</td>
         <td></td>
       </tr>
       <tr>
@@ -59,10 +67,10 @@
             <option value="bitbucket">Bitbucket</option>
           </select>
         </td>
-        <td><input type="text" id="repo" name="repo" placeholder="owner/repository" required></td>
-        <td><input type="text" id="branch" name="branch" placeholder="branch"></td>
-        <td><input type="text" id="path" name="path" placeholder="path" required></td>
-        <td><input type="text" id="constant" name="constant" placeholder="constant"></td>
+        <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="30"></td>
+        <td><input type="text" id="branch" name="branch" placeholder="branch" size="10"></td>
+        <td><input type="text" id="path" name="path" placeholder="path" size="30" required></td>
+        <td><input type="text" id="constant" name="constant" placeholder="constant" size="10"></td>
         <td><button type="submit">Fetch Badge JSON and Image</button></td>
       </tr>
     </table>
@@ -119,10 +127,13 @@
         const data = await response.json();
         resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
-        const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com/${url}`.replace(/%/g, '%25');
-        document.getElementById('badge-result').innerHTML = `<img src="${baddgeUrl}" />`;
-        document.getElementById('badge-url').innerHTML = `<pre>Badge URL:<br/>${baddgeUrl}</pre>`;
-        document.getElementById('badge-markdown').innerHTML = `<pre>Badge Markdown:<br/>![Version](${baddgeUrl})</pre>`;
+        const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
+        document.getElementById('badge-result').innerHTML =
+          `<img src="${baddgeUrl}" />`;
+        document.getElementById('badge-url').innerHTML =
+          `<pre>Badge URL:<br/>${baddgeUrl}</pre>`;
+        document.getElementById('badge-markdown').innerHTML =
+          `<pre>Badge Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
       } catch (error) {
         resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
       }
