@@ -36,17 +36,19 @@ The service parses ABAP code in your repository to find the value of a version c
 Here's a typical example:
 
 ```abap
-INTERFACE zif_my_project_version PUBLIC.
+INTERFACE zif_project_version PUBLIC.
   CONSTANTS version TYPE string VALUE '3.2.1'.
 ENDINTERFACE.
 ```
 
 ### TL;DR
 
-Markdown for creating a ABAP Package Version Badge:
+<img src="https://tools.abappm.com/tldr-badge.svg" alt="abapgit version badge" />
+
+Markdown for creating this ABAP Package Version Badge:
 
 ```
-![Version](https://img.shields.io/endpoint?url=https://shield.abappm.com/github/owner/repo/src/zif_my_project_version.intf.abap)
+![Version](https://img.shields.io/endpoint?url=https://shield.abappm.com/github/owner/repo/src/zif_project_version.intf.abap)
 ```
 
 ### API Request
