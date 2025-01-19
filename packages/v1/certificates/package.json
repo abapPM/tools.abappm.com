@@ -1,7 +1,7 @@
 {
   "name": "certificate-fetcher",
-  "version": "1.0.1",
-  "description": "A web application to fetch SSL certificates for a domain",
+  "version": "1.0.2",
+  "description": "A web service to fetch SSL certificates for a domain",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",
@@ -11,18 +11,15 @@
   "author": "Marc Bernard <marc@abappm.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abappm/certs.abappm.com.git"
+    "url": "https://github.com/abappm/tools.abappm.com.git"
   },
   "engines": {
     "node": ">=18"
   },
   "license": "MIT",
-  "dependencies": {
-    "https": "^1.0.0"
-  },
   "devDependencies": {
-    "@types/node": "^22.4.1",
-    "typescript": "^5.5.4",
-    "vitest": "^2.1.4"
+    "@types/node": "^22.10.7",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.2"
   }
 }
