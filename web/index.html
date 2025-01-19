@@ -126,7 +126,7 @@
           document.getElementById('badge-result').innerHTML =
             `<pre>Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
           document.getElementById('badge-markdown').innerHTML =
-            `<pre>Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
+            `<pre style="padding:5px;border-radius:5px;">Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
         } catch (error) {
           document.getElementById('badge-result').innerHTML = `<span style="color: red;">${error.message}</span>`;
         }
