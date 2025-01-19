@@ -23,177 +23,179 @@
 </head>
 
 <body link="#0044cc" vlink="#0044cc" style="background-color:#ccc;font-family:Open Sans,Arial;color:#000;top:100px;">
-  <div align="center">
-    <br />
-    <br />
-    <object data="apm_banner.svg" height="80"></object>
-    <p style="font-weight:400;font-size:48px;color:#444">🎁 Free Services for Open Source ABAP 🎁</p>
+  <div style="max-width:1280px;margin:0 auto;">
+    <div align="center">
+      <br />
+      <br />
+      <object data="apm_banner.svg" height="80"></object>
+      <p style="font-weight:400;font-size:48px;color:#444">🎁 Free Services for Open Source ABAP 🎁</p>
+    </div>
+
+    <h1 style="font-family:Righteous;color:#ff7700;">ABAP Package Version Badge</h1>
+
+    <a href="https://supportukrainenow.org/"><img src="Ukraine-heart-shape-flag.svg" height="25"
+        alt="Support Ukraine"></a> The service was created by <a href="https://github.com/sbcgua">Alexander
+      Tsybulsky</a>
+    from Ukraine. Please <a href="https://war.ukraine.ua/support-ukraine/">support Ukraine</a>!</p>
+
+    <p><strong>Build your badge</strong> (<a
+        href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
+        target="_blank">documentation</a>):</p>
+
+    <form id="shield-form">
+      <table width="900px" border="1" style="font-size:11px">
+        <thead style="background-color:darkgray">
+          <tr>
+            <td width="15%">Field</td>
+            <td width="25%">Example</td>
+            <td width="15%">Default</td>
+            <td width="45%"></td>
+          </tr>
+        </thead>
+        <tbody style="background-color:lightgray">
+          <tr>
+            <td>Platform:</td>
+            <td>github</td>
+            <td></td>
+            <td>
+              <select id="platform" name="platform" required>
+                <option value="">Select Platform</option>
+                <option value="github">GitHub</option>
+                <option value="gitlab">GitLab</option>
+                <option value="bitbucket">Bitbucket</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Repository:</td>
+            <td>abapGit/abapGit</td>
+            <td></td>
+            <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
+          </tr>
+          <tr>
+            <td>Branch:</td>
+            <td>main</td>
+            <td>master</td>
+            <td><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
+          </tr>
+          <tr>
+            <td>Path:</td>
+            <td>src/zif_abapgit_version.intf.abap</td>
+            <td></td>
+            <td><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
+          </tr>
+          <tr>
+            <td>Constant Name:</td>
+            <td>c_abap_version</td>
+            <td>version</td>
+            <td><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit">Fetch Badge JSON and Image</button>
+    </form>
+
+    <div id="badge-result"></div>
+    <div id="badge-url"></div>
+    <div id="badge-markdown"></div>
+    <div id="shield-result"></div>
+
+    <script>
+      document.getElementById('shield-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const platform = document.getElementById('platform').value;
+        const repo = document.getElementById('repo').value;
+        let branch = document.getElementById('branch').value;
+        if (branch !== '') {
+          branch = '/-' + branch;
+        }
+        const path = document.getElementById('path').value;
+        let constant = document.getElementById('constant').value;
+        if (constant !== '') {
+          constant = '/' + constant;
+        }
+
+        if (platform === '') {
+          alert('Please select a platform');
+          return;
+        }
+
+        if (repo === '') {
+          alert('Please enter a repository');
+          return;
+        }
+
+        if (path === '') {
+          alert('Please enter a path');
+          return;
+        }
+
+        const url = `/${platform}/${repo}${branch}/${path}${constant}`.replace(/#/g, '%23');
+
+        document.getElementById('certificate-result').innerHTML = '';
+        document.getElementById('shield-result').innerHTML = '';
+        document.getElementById('badge-result').innerHTML = '';
+        document.getElementById('badge-url').innerHTML = '';
+        document.getElementById('badge-markdown').innerHTML = '';
+
+        const resultDiv = document.getElementById('badge-markdown');
+        resultDiv.innerHTML = 'Loading...';
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+
+          const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
+          document.getElementById('badge-result').innerHTML =
+            `<img src="${baddgeUrl}" />`;
+          document.getElementById('badge-url').innerHTML =
+            `<pre>Badge URL:<br/><br/>${baddgeUrl}</pre>`;
+          document.getElementById('badge-markdown').innerHTML =
+            `<pre>Badge Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
+        } catch (error) {
+          resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
+        }
+
+      });
+    </script>
+
+    <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
+
+    <form id="certificate-form">
+      <label for="domain">Enter Domain (<a
+          href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
+          target="_blank">documentation</a>):</label><br />
+      <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
+      <button type="submit">Fetch Certificates</button>
+    </form>
+
+    <div id="certificate-result"></div>
+
+    <script>
+      document.getElementById('certificate-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const domain = document.getElementById('domain').value;
+
+        document.getElementById('certificate-result').innerHTML = '';
+        document.getElementById('shield-result').innerHTML = '';
+        document.getElementById('badge-result').innerHTML = '';
+        document.getElementById('badge-url').innerHTML = '';
+        document.getElementById('badge-markdown').innerHTML = '';
+
+        const resultDiv = document.getElementById('certificate-result');
+        resultDiv.innerHTML = 'Loading...';
+
+        try {
+          const response = await fetch(`/api/v1/certificates?domain=${domain}`);
+          const data = await response.json();
+          resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        } catch (error) {
+          resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
+        }
+      });
+    </script>
   </div>
-
-  <h1 style="font-family:Righteous;color:#ff7700;">ABAP Package Version Badge</h1>
-
-  <a href="https://supportukrainenow.org/"><img src="Ukraine-heart-shape-flag.svg" height="25"
-      alt="Support Ukraine"></a> The service was created by <a href="https://github.com/sbcgua">Alexander Tsybulsky</a>
-  from Ukraine. Please <a href="https://war.ukraine.ua/support-ukraine/">support Ukraine</a>!</p>
-
-  <p><strong>Build your badge</strong> (<a
-      href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
-      target="_blank">documentation</a>):</p>
-
-  <form id="shield-form">
-    <table width="800px">
-      <thead>
-        <tr>
-          <td width="15%">Field</td>
-          <td width="25%">Example</td>
-          <td width="15%">Default</td>
-          <td width="45%"></td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Platform:</td>
-          <td>github</td>
-          <td></td>
-          <td>
-            <select id="platform" name="platform" required>
-              <option value="">Select Platform</option>
-              <option value="github">GitHub</option>
-              <option value="gitlab">GitLab</option>
-              <option value="bitbucket">Bitbucket</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Repository:</td>
-          <td>abapGit/abapGit</td>
-          <td></td>
-          <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
-        </tr>
-        <tr>
-          <td>Branch:</td>
-          <td>main</td>
-          <td>master</td>
-          <td><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
-        </tr>
-        <tr>
-          <td>Path:</td>
-          <td>src/zif_abapgit_version.intf.abap</td>
-          <td></td>
-          <td><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
-        </tr>
-        <tr>
-          <td>Constant Name:</td>
-          <td>c_abap_version</td>
-          <td>version</td>
-          <td><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
-        </tr>
-      </tbody>
-    </table>
-    <button type="submit">Fetch Badge JSON and Image</button>
-  </form>
-
-  <div id="shield-result"></div>
-  <div id="badge-result"></div>
-  <div id="badge-url"></div>
-  <div id="badge-markdown"></div>
-
-  <script>
-    document.getElementById('shield-form').addEventListener('submit', async function (event) {
-      event.preventDefault();
-      const platform = document.getElementById('platform').value;
-      const repo = document.getElementById('repo').value;
-      let branch = document.getElementById('branch').value;
-      if (branch !== '') {
-        branch = '/-' + branch;
-      }
-      const path = document.getElementById('path').value;
-      let constant = document.getElementById('constant').value;
-      if (constant !== '') {
-        constant = '/' + constant;
-      }
-
-      if (platform === '') {
-        alert('Please select a platform');
-        return;
-      }
-
-      if (repo === '') {
-        alert('Please enter a repository');
-        return;
-      }
-
-      if (path === '') {
-        alert('Please enter a path');
-        return;
-      }
-
-      const url = `/${platform}/${repo}${branch}/${path}${constant}`.replace(/#/g, '%23');
-
-      document.getElementById('certificate-result').innerHTML = '';
-      document.getElementById('shield-result').innerHTML = '';
-      document.getElementById('badge-result').innerHTML = '';
-      document.getElementById('badge-url').innerHTML = '';
-      document.getElementById('badge-markdown').innerHTML = '';
-
-      const resultDiv = document.getElementById('shield-result');
-      resultDiv.innerHTML = 'Loading...';
-
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-
-        const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
-        document.getElementById('badge-result').innerHTML =
-          `<img src="${baddgeUrl}" />`;
-        document.getElementById('badge-url').innerHTML =
-          `<pre>Badge URL:<br/>${baddgeUrl}</pre>`;
-        document.getElementById('badge-markdown').innerHTML =
-          `<pre>Badge Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
-      } catch (error) {
-        resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
-      }
-
-    });
-  </script>
-
-  <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
-
-  <form id="certificate-form">
-    <label for="domain">Enter Domain (<a
-        href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
-        target="_blank">documentation</a>):</label><br />
-    <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
-    <button type="submit">Fetch Certificates</button>
-  </form>
-
-  <div id="certificate-result"></div>
-
-  <script>
-    document.getElementById('certificate-form').addEventListener('submit', async function (event) {
-      event.preventDefault();
-      const domain = document.getElementById('domain').value;
-
-      document.getElementById('certificate-result').innerHTML = '';
-      document.getElementById('shield-result').innerHTML = '';
-      document.getElementById('badge-result').innerHTML = '';
-      document.getElementById('badge-url').innerHTML = '';
-      document.getElementById('badge-markdown').innerHTML = '';
-
-      const resultDiv = document.getElementById('certificate-result');
-      resultDiv.innerHTML = 'Loading...';
-
-      try {
-        const response = await fetch(`/api/v1/certificates?domain=${domain}`);
-        const data = await response.json();
-        resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-      } catch (error) {
-        resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
-      }
-    });
-  </script>
-
 </body>
 
 </html>
