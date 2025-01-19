@@ -92,13 +92,11 @@
           </tr>
         </tbody>
       </table>
-      <button type="submit">Fetch Badge JSON and Image</button>
+      <p><button type="submit">Fetch Badge JSON and Image</button></p>
     </form>
 
     <div id="badge-result"></div>
-    <div id="badge-url"></div>
     <div id="badge-markdown"></div>
-    <div id="shield-result"></div>
 
     <script>
       document.getElementById('shield-form').addEventListener('submit', async function (event) {
@@ -115,46 +113,23 @@
           constant = '/' + constant;
         }
 
-        if (platform === '') {
-          alert('Please select a platform');
-          return;
-        }
-
-        if (repo === '') {
-          alert('Please enter a repository');
-          return;
-        }
-
-        if (path === '') {
-          alert('Please enter a path');
-          return;
-        }
-
         const url = `/${platform}/${repo}${branch}/${path}${constant}`.replace(/#/g, '%23');
 
         document.getElementById('certificate-result').innerHTML = '';
-        document.getElementById('shield-result').innerHTML = '';
         document.getElementById('badge-result').innerHTML = '';
-        document.getElementById('badge-url').innerHTML = '';
-        document.getElementById('badge-markdown').innerHTML = '';
-
-        const resultDiv = document.getElementById('badge-markdown');
-        resultDiv.innerHTML = 'Loading...';
+        document.getElementById('badge-markdown').innerHTML = 'Loading...';
 
         try {
           const response = await fetch(url);
           const data = await response.json();
-          resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
           const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
           document.getElementById('badge-result').innerHTML =
-            `<img src="${baddgeUrl}" />`;
-          document.getElementById('badge-url').innerHTML =
-            `<pre>Badge URL:<br/><br/>${baddgeUrl}</pre>`;
+            `<pre>Badge Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
           document.getElementById('badge-markdown').innerHTML =
             `<pre>Badge Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
         } catch (error) {
-          resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
+          document.getElementById('badge-result').innerHTML = `<span style="color: red;">${error.message}</span>`;
         }
 
       });
@@ -178,9 +153,7 @@
         const domain = document.getElementById('domain').value;
 
         document.getElementById('certificate-result').innerHTML = '';
-        document.getElementById('shield-result').innerHTML = '';
         document.getElementById('badge-result').innerHTML = '';
-        document.getElementById('badge-url').innerHTML = '';
         document.getElementById('badge-markdown').innerHTML = '';
 
         const resultDiv = document.getElementById('certificate-result');
