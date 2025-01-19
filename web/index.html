@@ -42,38 +42,51 @@
 
   <form id="shield-form">
     <table border="0">
+      <th>
+        <td>Field</td>
+        <td>Example</td>
+        <td>Default</td>
+        <td></td>
+      </th>
       <tr>
         <td>Platform:</td>
-        <td>Repository:</td>
-        <td>Branch:</td>
-        <td>Path:</td>
-        <td>Constant Name:</td>
-        <td></td>
-      </tr>
-      <tr>
         <td>github</td>
-        <td>abapGit/abapGit</td>
-        <td>main</td>
-        <td>src/zif_abapgit_version.intf.abap</td>
-        <td>c_abap_version</td>
         <td></td>
-      </tr>
-      <tr>
         <td>
-          <select id="platform" name="platform" required>
+          <select id="platform" name="platform" size="50" required>
             <option value="">Select Platform</option>
             <option value="github">GitHub</option>
             <option value="gitlab">GitLab</option>
             <option value="bitbucket">Bitbucket</option>
           </select>
         </td>
-        <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="30"></td>
-        <td><input type="text" id="branch" name="branch" placeholder="branch" size="10"></td>
-        <td><input type="text" id="path" name="path" placeholder="path" size="30" required></td>
-        <td><input type="text" id="constant" name="constant" placeholder="constant" size="10"></td>
-        <td><button type="submit">Fetch Badge JSON and Image</button></td>
+      </tr>
+      <tr>
+        <td>Repository:</td>
+        <td>abapGit/abapGit</td>
+        <td></td>
+        <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
+      </tr>
+      <tr>
+        <td>Branch:</td>
+        <td>main</td>
+        <td>master</td>
+        <td><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
+      </tr>
+      <tr>
+        <td>Path:</td>
+        <td>src/zif_abapgit_version.intf.abap</td>
+        <td></td>
+        <td><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
+      </tr>
+      <tr>
+        <td>Constant Name:</td>
+        <td>c_abap_version</td>
+        <td>version</td>
+        <td><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
       </tr>
     </table>
+    <button type="submit">Fetch Badge JSON and Image</button>
   </form>
 
   <div id="shield-result"></div>
