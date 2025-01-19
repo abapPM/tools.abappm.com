@@ -44,20 +44,20 @@
 
     <form id="shield-form">
       <table width="900px" border="1" style="font-size:11px">
-        <thead style="background-color:darkgray">
+        <thead style="background-color:darkgray;font-weight:bold">
           <tr>
-            <td width="15%">Field</td>
-            <td width="25%">Example</td>
-            <td width="15%">Default</td>
-            <td width="45%"></td>
+            <td width="15%" style="padding:2px">Field</td>
+            <td width="25%" style="padding:2px">Example</td>
+            <td width="15%" style="padding:2px">Default</td>
+            <td width="45%" style="padding:2px">Data</td>
           </tr>
         </thead>
         <tbody style="background-color:lightgray">
           <tr>
-            <td>Platform:</td>
-            <td>github</td>
-            <td></td>
-            <td>
+            <td style="padding:2px">Platform:</td>
+            <td style="padding:2px">github</td>
+            <td style="padding:2px"></td>
+            <td style="padding:2px">
               <select id="platform" name="platform" required>
                 <option value="">Select Platform</option>
                 <option value="github">GitHub</option>
@@ -67,28 +67,28 @@
             </td>
           </tr>
           <tr>
-            <td>Repository:</td>
-            <td>abapGit/abapGit</td>
-            <td></td>
-            <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
+            <td style="padding:2px">Repository:</td>
+            <td style="padding:2px">abapGit/abapGit</td>
+            <td style="padding:2px"></td>
+            <td style="padding:2px"><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
           </tr>
           <tr>
-            <td>Branch:</td>
-            <td>main</td>
-            <td>master</td>
-            <td><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
+            <td style="padding:2px">Branch:</td>
+            <td style="padding:2px">main</td>
+            <td style="padding:2px">master</td>
+            <td style="padding:2px"><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
           </tr>
           <tr>
-            <td>Path:</td>
-            <td>src/zif_abapgit_version.intf.abap</td>
-            <td></td>
-            <td><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
+            <td style="padding:2px">Path to Source:</td>
+            <td style="padding:2px">src/zif_abapgit_version.intf.abap</td>
+            <td style="padding:2px"></td>
+            <td style="padding:2px"><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
           </tr>
           <tr>
-            <td>Constant Name:</td>
-            <td>c_abap_version</td>
-            <td>version</td>
-            <td><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
+            <td style="padding:2px">Constant Name:</td>
+            <td style="padding:2px">c_abap_version</td>
+            <td style="padding:2px">version</td>
+            <td style="padding:2px"><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
           </tr>
         </tbody>
       </table>
