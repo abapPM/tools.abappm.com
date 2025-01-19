@@ -54,45 +54,44 @@
         </thead>
         <tbody style="background-color:lightgray">
           <tr>
-            <td style="padding:2px">Platform:</td>
+            <td style="padding:2px;font-weight:bold">Platform:</td>
             <td style="padding:2px">github</td>
             <td style="padding:2px"></td>
             <td style="padding:2px">
               <select id="platform" name="platform" required>
-                <option value="">Select Platform</option>
-                <option value="github">GitHub</option>
+                <option value="github" selected>GitHub</option>
                 <option value="gitlab">GitLab</option>
                 <option value="bitbucket">Bitbucket</option>
               </select>
             </td>
           </tr>
           <tr>
-            <td style="padding:2px">Repository:</td>
+            <td style="padding:2px;font-weight:bold">Repository:</td>
             <td style="padding:2px">abapGit/abapGit</td>
             <td style="padding:2px"></td>
             <td style="padding:2px"><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
           </tr>
           <tr>
-            <td style="padding:2px">Branch:</td>
+            <td style="padding:2px;font-weight:bold">Branch:</td>
             <td style="padding:2px">main</td>
             <td style="padding:2px">master</td>
             <td style="padding:2px"><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
           </tr>
           <tr>
-            <td style="padding:2px">Path to Source:</td>
+            <td style="padding:2px;font-weight:bold">Path to Source:</td>
             <td style="padding:2px">src/zif_abapgit_version.intf.abap</td>
             <td style="padding:2px"></td>
             <td style="padding:2px"><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
           </tr>
           <tr>
-            <td style="padding:2px">Constant Name:</td>
+            <td style="padding:2px;font-weight:bold">Constant Name:</td>
             <td style="padding:2px">c_abap_version</td>
             <td style="padding:2px">version</td>
             <td style="padding:2px"><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
           </tr>
         </tbody>
       </table>
-      <p><button type="submit">Fetch Badge JSON and Image</button></p>
+      <p><button type="submit">Build Badge</button></p>
     </form>
 
     <div id="badge-result"></div>
