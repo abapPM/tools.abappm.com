@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/sbcgua/abap-package-version-shield.git"
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Custom handler for shields.io to display abap package version",
   "main": "index.js",
   "scripts": {
@@ -21,12 +21,12 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^9.18.0",
+    "eslint": "^9.23.0",
     "jest": "^29.7.0",
     "node-fetch": "^3.3.2"
   },
   "dependencies": {
-    "fast-xml-parser": "^4.5.1"
+    "fast-xml-parser": "^5.0.9"
   },
   "jest": {
     "testPathIgnorePatterns": [

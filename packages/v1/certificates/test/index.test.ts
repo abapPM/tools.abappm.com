@@ -6,14 +6,14 @@ describe('main function', () => {
     const event = {};
     const response = await main(event);
     expect(response.statusCode).toBe(400);
-    expect(response.body.error).toBe('Domain is required');
+    expect(response.body).toHaveProperty('error', 'Domain is required');
   });
 
   it('should return 400 for invalid domain format', async () => {
     const event = { domain: 'invalid_domain' };
     const response = await main(event);
     expect(response.statusCode).toBe(400);
-    expect(response.body.error).toBe('Invalid domain format');
+    expect(response.body).toHaveProperty('error', 'Invalid domain format');
   });
 
   it('should return 200 and certificates for github.com', async () => {
