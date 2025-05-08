@@ -6,6 +6,7 @@ interface Certificate {
   validTo: string;
   subject: any;
   cert: string;
+  pem: string;
 }
 
 interface Certificates {
@@ -98,11 +99,15 @@ export function getCertificatesForDomain(domain: string): Promise<Certificates> 
 }
 
 function formatCertificate(cert: any): Certificate {
+  const base64Cert = cert.raw.toString('base64');
+  const pemCert = `-----BEGIN CERTIFICATE-----\n${base64Cert.match(/.{1,64}/g)?.join('\n')}\n-----END CERTIFICATE-----\n`;
+
   return {
     issuer: cert.issuer,
     validFrom: new Date(cert.valid_from).toISOString(),
     validTo: new Date(cert.valid_to).toISOString(),
     subject: cert.subject,
-    cert: cert.raw.toString('base64'),
+    cert: base64Cert,
+    pem: pemCert
   };
 }

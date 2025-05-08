@@ -1,6 +1,6 @@
 {
   "name": "certificate-fetcher",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A web service to fetch SSL certificates for a domain",
   "main": "lib/index.js",
   "scripts": {
@@ -18,8 +18,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.13.13",
-    "typescript": "^5.8.2",
-    "vitest": "^3.0.9"
+    "@types/node": "^22.15.16",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.3"
   }
 }
