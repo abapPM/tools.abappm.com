@@ -23,6 +23,14 @@ describe('main function', () => {
     expect(response.body).toHaveProperty('domain', 'github.com');
     expect(response.body).toHaveProperty('peerCertificate');
     expect(response.body).toHaveProperty('intermediateCertificates');
+
+    // Check that peerCertificate has PEM format
+    const responseBody = typeof response.body === 'string' ? JSON.parse(response.body) : response.body;
+    const peerCert = responseBody.peerCertificate.pem;
+    expect(peerCert).toBeTruthy();
+    expect(peerCert).toContain('-----BEGIN CERTIFICATE-----');
+    expect(peerCert).toContain('-----END CERTIFICATE-----');
+    expect(peerCert.trim()).toMatch(/^-----BEGIN CERTIFICATE-----[\s\S]+-----END CERTIFICATE-----$/);
   });
 
   it('should return 200 and certificates for codeberg.org', async () => {

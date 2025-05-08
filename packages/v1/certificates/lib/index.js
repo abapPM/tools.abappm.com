@@ -76,11 +76,15 @@ function getCertificatesForDomain(domain) {
     });
 }
 function formatCertificate(cert) {
+    var _a;
+    const base64Cert = cert.raw.toString('base64');
+    const pemCert = `-----BEGIN CERTIFICATE-----\n${(_a = base64Cert.match(/.{1,64}/g)) === null || _a === void 0 ? void 0 : _a.join('\n')}\n-----END CERTIFICATE-----\n`;
     return {
         issuer: cert.issuer,
         validFrom: new Date(cert.valid_from).toISOString(),
         validTo: new Date(cert.valid_to).toISOString(),
         subject: cert.subject,
-        cert: cert.raw.toString('base64'),
+        cert: base64Cert,
+        pem: pemCert
     };
 }
