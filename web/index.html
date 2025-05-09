@@ -20,6 +20,25 @@
       margin-top: 20px;
     }
   </style>
+  <script>
+    function copyToClipboard(elementId) {
+      const element = document.getElementById(elementId);
+      const text = element.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+
+    function updateCopyButtonVisibility(divId, buttonId) {
+      const div = document.getElementById(divId);
+      const btn = document.getElementById(buttonId);
+      if (!div || !btn) return;
+      // Hide if empty or only whitespace
+      btn.style.display = div.textContent.trim() ? '' : 'none';
+    }
+  </script>
 </head>
 
 <body link="#0044cc" vlink="#0044cc" style="background-color:#ccc;font-family:Open Sans,Arial;color:#000;top:100px;">
@@ -39,8 +58,8 @@
     from Ukraine. Please <a href="https://war.ukraine.ua/support-ukraine/">support Ukraine</a>!</p>
 
     <p><strong>Build your badge (<a
-        href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
-        target="_blank">documentation</a>):</strong></p>
+          href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge"
+          target="_blank">documentation</a>):</strong></p>
 
     <form id="shield-form">
       <table width="900px" border="1" style="font-size:11px">
@@ -69,7 +88,8 @@
             <td style="padding:2px;font-weight:bold">Repository:</td>
             <td style="padding:2px">abapGit/abapGit</td>
             <td style="padding:2px"></td>
-            <td style="padding:2px"><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50"></td>
+            <td style="padding:2px"><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50">
+            </td>
           </tr>
           <tr>
             <td style="padding:2px;font-weight:bold">Branch:</td>
@@ -87,15 +107,26 @@
             <td style="padding:2px;font-weight:bold">Constant Name:</td>
             <td style="padding:2px">c_abap_version</td>
             <td style="padding:2px">version</td>
-            <td style="padding:2px"><input type="text" id="constant" name="constant" placeholder="constant" size="50"></td>
+            <td style="padding:2px"><input type="text" id="constant" name="constant" placeholder="constant" size="50">
+            </td>
           </tr>
         </tbody>
       </table>
-      <p><button type="submit">Build Badge</button></p>
+      <p>
+        <button type="submit">Build Badge</button>
+      </p>
     </form>
 
     <div id="badge-result"></div>
-    <div id="badge-markdown"></div>
+
+    <div style="position: relative;">
+      <div id="badge-markdown"></div>
+      <div>
+        <button id="copy-badge-btn" onclick="copyToClipboard('badge-markdown')" style="display: none;">
+          Copy to Clipboard
+        </button>
+      </div>
+    </div>
 
     <script>
       document.getElementById('shield-form').addEventListener('submit', async function (event) {
@@ -116,6 +147,9 @@
 
         document.getElementById('certificate-result').innerHTML = '';
         document.getElementById('badge-result').innerHTML = '';
+        document.getElementById('badge-markdown').innerHTML = '';
+        updateCopyButtonVisibility('badge-markdown', 'copy-badge-btn');
+
         document.getElementById('badge-markdown').innerHTML = 'Loading...';
 
         try {
@@ -127,6 +161,7 @@
             `<pre>Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
           document.getElementById('badge-markdown').innerHTML =
             `<pre style="padding:5px;border-radius:5px;">Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
+          updateCopyButtonVisibility('badge-markdown', 'copy-badge-btn');
         } catch (error) {
           document.getElementById('badge-result').innerHTML = `<span style="color: red;">${error.message}</span>`;
         }
@@ -137,15 +172,22 @@
     <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
 
     <p><strong>Enter domain: (<a
-      href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
-      target="_blank">documentation</a>):</strong></p>
-      
+          href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
+          target="_blank">documentation</a>):</strong></p>
+
     <form id="certificate-form">
       <input type="text" id="domain" name="domain" size="70" placeholder="github.com" required>
       <button type="submit">Fetch Certificates</button>
     </form>
 
-    <div id="certificate-result"></div>
+    <div style="position: relative;">
+      <div id="certificate-result"></div>
+      <div>
+        <button id="copy-cert-btn" onclick="copyToClipboard('certificate-result')" style="display: none;">
+          Copy to Clipboard
+        </button>
+      </div>
+    </div>
 
     <script>
       document.getElementById('certificate-form').addEventListener('submit', async function (event) {
@@ -155,6 +197,7 @@
         document.getElementById('certificate-result').innerHTML = '';
         document.getElementById('badge-result').innerHTML = '';
         document.getElementById('badge-markdown').innerHTML = '';
+        updateCopyButtonVisibility('certificate-result', 'copy-cert-btn');
 
         const resultDiv = document.getElementById('certificate-result');
         resultDiv.innerHTML = 'Loading...';
@@ -163,6 +206,7 @@
           const response = await fetch(`/api/v1/certificates?domain=${domain}`);
           const data = await response.json();
           resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+          updateCopyButtonVisibility('certificate-result', 'copy-cert-btn');
         } catch (error) {
           resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
         }
