@@ -1,6 +1,6 @@
 {
   "name": "certificate-fetcher",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A web service to fetch SSL certificates for a domain",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "url": "https://github.com/abappm/tools.abappm.com.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "license": "MIT",
   "devDependencies": {
