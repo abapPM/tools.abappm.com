@@ -177,7 +177,7 @@ describe('test with path params', () => {
                 message: 'Error: Owner not specified',
             }),
         });
-        expect(console.error).toBeCalled();
+        expect(console.error).toHaveBeenCalled();
     });
 
     test('should fail with wrong version format', async () => {
@@ -205,7 +205,7 @@ describe('test with path params', () => {
                 message: 'Error: Unexpected version format (not semver): XYZ',
             }),
         });
-        expect(console.error).toBeCalled();
+        expect(console.error).toHaveBeenCalled();
     });
 });
 
