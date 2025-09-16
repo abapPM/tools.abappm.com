@@ -158,6 +158,7 @@ The result of the call includes the certificate of the domain server as well as 
     "validFrom": "2024-03-07T00:00:00.000Z",
     "validTo": "2025-03-07T23:59:59.000Z",
     "subject": { "CN": "github.com" },
+    "pem": "-----BEGIN CERTIFICATE-----\nMIIEozCC... siesA==\n-----END CERTIFICATE-----\n",
     "cert": "MIIEozCC...siesA"
   },
   "intermediateCertificates": [
@@ -178,6 +179,7 @@ The result of the call includes the certificate of the domain server as well as 
         "O": "Sectigo Limited",
         "CN": "Sectigo ECC Domain Validation Secure Server CA"
       },
+      "pem": "-----BEGIN CERTIFICATE-----\nMIIDqDCCA... QcKmc8fmA==\n-----END CERTIFICATE-----\n",
       "cert": "MIIDqDCCA...QcKmc8fmA=="
     },
     {
@@ -197,6 +199,7 @@ The result of the call includes the certificate of the domain server as well as 
         "O": "The USERTRUST Network",
         "CN": "USERTrust ECC Certification Authority"
       },
+      "pem": "-----BEGIN CERTIFICATE-----\nMIID0zCCA... oEeJBuv==\n-----END CERTIFICATE-----\n",
       "cert": "MIID0zCCA...oEeJBuv/c="
     },
     {
@@ -216,6 +219,7 @@ The result of the call includes the certificate of the domain server as well as 
         "O": "Comodo CA Limited",
         "CN": "AAA Certificate Services"
       },
+      "pem": "-----BEGIN CERTIFICATE-----\nMIIEMjCCAxqgAw... pNpaYbg==\n-----END CERTIFICATE-----\n",
       "cert": "MIIEMjCCAxqgAw...pNpaYbg=="
     }
   ]
