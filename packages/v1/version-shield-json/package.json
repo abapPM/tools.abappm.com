@@ -1,6 +1,6 @@
 {
   "name": "abap-package-version-shield",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Custom handler for shields.io to display abap package version",
   "main": "index.js",
   "repository": {
@@ -17,7 +17,7 @@
   },
   "author": "Alexander Tsybulsky",
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "license": "ISC",
   "devDependencies": {
