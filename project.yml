@@ -5,20 +5,16 @@ packages:
         runtime: "nodejs:18"
         limits:
           timeout: 10000
-        env:
-          LOG_DESTINATIONS: ""
       - name: mailgun
         runtime: "nodejs:18"
         limits:
           timeout: 1000
-        env:
-          MAILGUN_DOMAIN: ""
-          TO_EMAIL: ""
-          LOG_DESTINATIONS: ""
-          MAILGUN_API_KEY: ""
       - name: version-shield-json
         runtime: "nodejs:18"
         limits:
           timeout: 1000
-        env:
-          LOG_DESTINATIONS: ""
+environment:
+  LOG_DESTINATIONS: ""
+  MAILGUN_API_KEY: ""
+  MAILGUN_DOMAIN: ""
+  TO_EMAIL: ""
