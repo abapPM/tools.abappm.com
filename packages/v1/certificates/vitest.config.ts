@@ -1,15 +1,7 @@
-import { Config } from 'vitest';
+import { defineConfig } from 'vitest/config'
 
-const config: Config = {
-  testMatch: ['**/*.test.ts'],
-  setupFilesAfterEnv: ['<rootDir>/src/setup.ts'],
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+export default defineConfig({
+  test: {
+    include: ['**/*.test.ts'],
   },
-  collectCoverage: true,
-  coverageDirectory: '<rootDir>/coverage',
-  coverageReporters: ['lcov', 'text-summary'],
-  reporters: ['default']
-};
-
-export default config;
+});
