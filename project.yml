@@ -9,12 +9,13 @@ packages:
         runtime: "nodejs:18"
         limits:
           timeout: 1000
+        environment:
+          MAILGUN_API_KEY: ""
+          MAILGUN_DOMAIN: ""
+          TO_EMAIL: ""
       - name: version-shield-json
         runtime: "nodejs:18"
         limits:
           timeout: 1000
 environment:
   LOG_DESTINATIONS: ""
-  MAILGUN_API_KEY: ""
-  MAILGUN_DOMAIN: ""
-  TO_EMAIL: ""
