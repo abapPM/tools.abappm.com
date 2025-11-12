@@ -5,6 +5,10 @@ packages:
         runtime: "nodejs:18"
         limits:
           timeout: 10000
+      - name: mailgun
+        runtime: "nodejs:18"
+        limits:
+          timeout: 1000
       - name: version-shield-json
         runtime: "nodejs:18"
         limits:
