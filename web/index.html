@@ -117,6 +117,69 @@
     </div>
 
     <script src="assets/scripts/certificate.js"></script>
+
+    <h1>Mailgun Sender</h1>
+
+    <p><strong>Enter your email: (<a href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#mailgun-sender" target="_blank">documentation</a>):</strong></p>
+
+    <form id="mailgun-form">
+      <table class="form-table">
+        <thead>
+          <tr>
+            <td width="15%">Field</td>
+            <td width="25%">Example</td>
+            <td width="45%">Data</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="field-label">First Name:</td>
+            <td>John</td>
+            <td><input type="text" id="firstName" name="firstName" size="70" placeholder="John" required></td>
+          </tr>
+          <tr>
+            <td class="field-label">Last Name:</td>
+            <td>Doe</td>
+            <td><input type="text" id="lastName" name="lastName" size="70" placeholder="Doe" required></td>
+          </tr>
+          <tr>
+            <td class="field-label">Company:</td>
+            <td>JD, Inc.</td>
+            <td><input type="text" id="company" name="company" size="70" placeholder="Company" required></td>
+          </tr>
+          <tr>
+            <td class="field-label">Email:</td>
+            <td>your@email.com</td>
+            <td><input type="email" id="email" name="email" size="70" placeholder="your@email.com" required></td>
+          </tr>
+          <tr>
+            <td class="field-label">Subject:</td>
+            <td>Contact Form Submission</td>
+            <td><input type="text" id="subject" name="subject" size="70" placeholder="Contact Form Submission" required></td>
+          </tr>
+          <tr>
+            <td class="field-label">Message:</td>
+            <td>Hello, world!</td>
+            <td><textarea id="message" name="message" rows="4" cols="69" placeholder="Hello, world!" required></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <button type="submit">Send Email</button>
+      </p>
+    </form>
+
+    <div class="relative">
+      <div id="mailgun-result"></div>
+      <div>
+        <button id="copy-mailgun-btn" class="copy-btn" onclick="copyToClipboard('mailgun-result')">
+          Copy to Clipboard
+        </button>
+      </div>
+    </div>
+
+    <script src="assets/scripts/mailgun.js"></script>
+
   </div>
 </body>
 
