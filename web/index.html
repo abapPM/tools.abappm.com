@@ -2,55 +2,29 @@
 <html lang="en">
 
 <head>
+  <title>apm Tools</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Marc F. Bernard">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-  <title>apm Tools</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    #certificate-result {
-      margin-top: 20px;
-    }
-  </style>
-  <script>
-    function copyToClipboard(elementId) {
-      const element = document.getElementById(elementId);
-      const text = element.textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy:', err);
-      });
-    }
-
-    function updateCopyButtonVisibility(divId, buttonId) {
-      const div = document.getElementById(divId);
-      const btn = document.getElementById(buttonId);
-      if (!div || !btn) return;
-      // Hide if empty or only whitespace
-      btn.style.display = div.textContent.trim() ? '' : 'none';
-    }
-  </script>
+  <link rel="stylesheet" href="assets/styles/main.css">
+  <script src="assets/scripts/utils.js"></script>
 </head>
 
-<body link="#0044cc" vlink="#0044cc" style="background-color:#ccc;font-family:Open Sans,Arial;color:#000;top:100px;">
-  <div style="max-width:1280px;margin:0 auto;">
-    <div align="center">
+<body>
+  <div class="container">
+    <div class="center">
       <br />
       <br />
       <object data="apm_banner.svg" height="80"></object>
-      <p style="font-weight:400;font-size:48px;color:#444">🎁 Free Services for Open Source ABAP 🎁</p>
+      <p class="banner-text">🎁 Free Services for Open Source ABAP 🎁</p>
     </div>
 
-    <h1 style="font-family:Righteous;color:#ff7700;">ABAP Package Version Badge</h1>
+    <h1>ABAP Package Version Badge</h1>
 
     <a href="https://supportukrainenow.org/"><img src="Ukraine-heart-shape-flag.svg" height="25"
         alt="Support Ukraine"></a> The service was created by <a href="https://github.com/sbcgua">Alexander
@@ -62,21 +36,21 @@
           target="_blank">documentation</a>):</strong></p>
 
     <form id="shield-form">
-      <table width="900px" border="1" style="font-size:11px">
-        <thead style="background-color:darkgray;font-weight:bold">
+      <table class="form-table">
+        <thead>
           <tr>
-            <td width="15%" style="padding:2px">Field</td>
-            <td width="25%" style="padding:2px">Example</td>
-            <td width="15%" style="padding:2px">Default</td>
-            <td width="45%" style="padding:2px">Data</td>
+            <td width="15%">Field</td>
+            <td width="25%">Example</td>
+            <td width="15%">Default</td>
+            <td width="45%">Data</td>
           </tr>
         </thead>
-        <tbody style="background-color:lightgray">
+        <tbody>
           <tr>
-            <td style="padding:2px;font-weight:bold">Platform:</td>
-            <td style="padding:2px">github</td>
-            <td style="padding:2px"></td>
-            <td style="padding:2px">
+            <td class="field-label">Platform:</td>
+            <td>github</td>
+            <td></td>
+            <td>
               <select id="platform" name="platform" required>
                 <option value="github" selected>GitHub</option>
                 <option value="gitlab">GitLab</option>
@@ -85,29 +59,29 @@
             </td>
           </tr>
           <tr>
-            <td style="padding:2px;font-weight:bold">Repository:</td>
-            <td style="padding:2px">abapGit/abapGit</td>
-            <td style="padding:2px"></td>
-            <td style="padding:2px"><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50">
+            <td class="field-label">Repository:</td>
+            <td>abapGit/abapGit</td>
+            <td></td>
+            <td><input type="text" id="repo" name="repo" placeholder="owner/repository" size="50">
             </td>
           </tr>
           <tr>
-            <td style="padding:2px;font-weight:bold">Branch:</td>
-            <td style="padding:2px">main</td>
-            <td style="padding:2px">master</td>
-            <td style="padding:2px"><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
+            <td class="field-label">Branch:</td>
+            <td>main</td>
+            <td>master</td>
+            <td><input type="text" id="branch" name="branch" placeholder="branch" size="50"></td>
           </tr>
           <tr>
-            <td style="padding:2px;font-weight:bold">Path to Source:</td>
-            <td style="padding:2px">src/zif_abapgit_version.intf.abap</td>
-            <td style="padding:2px"></td>
-            <td style="padding:2px"><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
+            <td class="field-label">Path to Source:</td>
+            <td>src/zif_abapgit_version.intf.abap</td>
+            <td></td>
+            <td><input type="text" id="path" name="path" placeholder="path" size="50" required></td>
           </tr>
           <tr>
-            <td style="padding:2px;font-weight:bold">Constant Name:</td>
-            <td style="padding:2px">c_abap_version</td>
-            <td style="padding:2px">version</td>
-            <td style="padding:2px"><input type="text" id="constant" name="constant" placeholder="constant" size="50">
+            <td class="field-label">Constant Name:</td>
+            <td>c_abap_version</td>
+            <td>version</td>
+            <td><input type="text" id="constant" name="constant" placeholder="constant" size="50">
             </td>
           </tr>
         </tbody>
@@ -119,57 +93,18 @@
 
     <div id="badge-result"></div>
 
-    <div style="position: relative;">
+    <div class="relative">
       <div id="badge-markdown"></div>
       <div>
-        <button id="copy-badge-btn" onclick="copyToClipboard('badge-markdown')" style="display: none;">
+        <button id="copy-badge-btn" class="copy-btn" onclick="copyToClipboard('badge-markdown')">
           Copy to Clipboard
         </button>
       </div>
     </div>
 
-    <script>
-      document.getElementById('shield-form').addEventListener('submit', async function (event) {
-        event.preventDefault();
-        const platform = document.getElementById('platform').value;
-        const repo = document.getElementById('repo').value;
-        let branch = document.getElementById('branch').value;
-        if (branch !== '') {
-          branch = '/-' + branch;
-        }
-        const path = document.getElementById('path').value;
-        let constant = document.getElementById('constant').value;
-        if (constant !== '') {
-          constant = '/' + constant;
-        }
+    <script src="assets/scripts/badge.js"></script>
 
-        const url = `/${platform}/${repo}${branch}/${path}${constant}`.replace(/#/g, '%23');
-
-        document.getElementById('certificate-result').innerHTML = '';
-        document.getElementById('badge-result').innerHTML = '';
-        document.getElementById('badge-markdown').innerHTML = '';
-        updateCopyButtonVisibility('badge-markdown', 'copy-badge-btn');
-
-        document.getElementById('badge-markdown').innerHTML = 'Loading...';
-
-        try {
-          const response = await fetch(url);
-          const data = await response.json();
-
-          const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
-          document.getElementById('badge-result').innerHTML =
-            `<pre>Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
-          document.getElementById('badge-markdown').innerHTML =
-            `<pre style="padding:5px;border-radius:5px;">Markdown:<br/><br/><span style="background-color:lightgreen;">![Version](${baddgeUrl})</span></pre><br/>`;
-          updateCopyButtonVisibility('badge-markdown', 'copy-badge-btn');
-        } catch (error) {
-          document.getElementById('badge-result').innerHTML = `<span style="color: red;">${error.message}</span>`;
-        }
-
-      });
-    </script>
-
-    <h1 style="font-family:Righteous;color:#ff7700;">Certificate Fetcher</h1>
+    <h1>Certificate Fetcher</h1>
 
     <p><strong>Enter domain: (<a
           href="https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher"
@@ -180,38 +115,16 @@
       <button type="submit">Fetch Certificates</button>
     </form>
 
-    <div style="position: relative;">
+    <div class="relative">
       <div id="certificate-result"></div>
       <div>
-        <button id="copy-cert-btn" onclick="copyToClipboard('certificate-result')" style="display: none;">
+        <button id="copy-cert-btn" class="copy-btn" onclick="copyToClipboard('certificate-result')">
           Copy to Clipboard
         </button>
       </div>
     </div>
 
-    <script>
-      document.getElementById('certificate-form').addEventListener('submit', async function (event) {
-        event.preventDefault();
-        const domain = document.getElementById('domain').value;
-
-        document.getElementById('certificate-result').innerHTML = '';
-        document.getElementById('badge-result').innerHTML = '';
-        document.getElementById('badge-markdown').innerHTML = '';
-        updateCopyButtonVisibility('certificate-result', 'copy-cert-btn');
-
-        const resultDiv = document.getElementById('certificate-result');
-        resultDiv.innerHTML = 'Loading...';
-
-        try {
-          const response = await fetch(`/api/v1/certificates?domain=${domain}`);
-          const data = await response.json();
-          resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-          updateCopyButtonVisibility('certificate-result', 'copy-cert-btn');
-        } catch (error) {
-          resultDiv.innerHTML = `<span style="color: red;">${error.message}</span>`;
-        }
-      });
-    </script>
+    <script src="assets/scripts/certificate.js"></script>
   </div>
 </body>
 

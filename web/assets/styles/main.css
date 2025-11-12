@@ -1,0 +1,84 @@
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  margin: 20px;
+  background-color: #ccc;
+  color: #000;
+  top: 100px;
+}
+
+body a:link {
+  color: #0044cc;
+}
+
+body a:visited {
+  color: #0044cc;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.banner-text {
+  font-weight: 400;
+  font-size: 48px;
+  color: #444;
+}
+
+h1 {
+  font-family: Righteous;
+  color: #ff7700;
+}
+
+#certificate-result {
+  margin-top: 20px;
+}
+
+.form-table {
+  width: 900px;
+  border: 1px solid;
+  font-size: 11px;
+}
+
+.form-table thead {
+  background-color: darkgray;
+  font-weight: bold;
+}
+
+.form-table tbody {
+  background-color: lightgray;
+}
+
+.form-table td {
+  padding: 2px;
+}
+
+.form-table td.field-label {
+  font-weight: bold;
+}
+
+.relative {
+  position: relative;
+}
+
+.copy-btn {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+.markdown-pre {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.markdown-code {
+  background-color: lightgreen;
+}
+
