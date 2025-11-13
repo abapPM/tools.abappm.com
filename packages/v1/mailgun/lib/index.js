@@ -13,6 +13,8 @@ const mailgun_js_1 = tslib_1.__importDefault(require("mailgun.js"));
 const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
 async function main(event, context) {
     var _a, _b;
+    console.log('event', event);
+    console.log('context', context);
     // Check if request is from allowed domains
     const origin = ((_a = event.headers) === null || _a === void 0 ? void 0 : _a.origin) || ((_b = event.headers) === null || _b === void 0 ? void 0 : _b.Origin);
     const allowedDomains = [

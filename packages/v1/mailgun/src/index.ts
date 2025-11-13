@@ -10,6 +10,9 @@ import Mailgun from "mailgun.js";
 import sanitizeHtml from 'sanitize-html';
 
 export async function main(event: any, context: any) {
+    console.log('event', event);
+    console.log('context', context);
+
     // Check if request is from allowed domains
     const origin = event.headers?.origin || event.headers?.Origin;
     const allowedDomains = [
