@@ -22,6 +22,7 @@ document.getElementById('mailgun-form').addEventListener('submit', async functio
     resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
     updateCopyButtonVisibility('mailgun-result', 'copy-mailgun-btn');
   } catch (error) {
-    resultDiv.innerHTML = `<span class="error">${JSON.stringify(error, null, 2)}</span>`;
+    console.log('error', error);
+    resultDiv.innerHTML = `<span class="error">${error.message}</span>`;
   }
 });

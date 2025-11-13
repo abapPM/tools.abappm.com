@@ -9,8 +9,10 @@ import Mailgun from "mailgun.js";
 import sanitizeHtml from 'sanitize-html';
 export async function main(event, context) {
     var _a, _b;
-    console.log('event', event);
-    console.log('context', context);
+    return {
+        statusCode: 200,
+        body: JSON.stringify({ event, context })
+    };
     // Check if request is from allowed domains
     const origin = ((_a = event.headers) === null || _a === void 0 ? void 0 : _a.origin) || ((_b = event.headers) === null || _b === void 0 ? void 0 : _b.Origin);
     const allowedDomains = [
@@ -24,7 +26,7 @@ export async function main(event, context) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ error: 'Forbidden: Origin not allowed' })
+            body: { error: 'Forbidden: Origin not allowed' }
         };
     }
     // Handle CORS preflight requests
@@ -47,7 +49,7 @@ export async function main(event, context) {
             headers: {
                 'Access-Control-Allow-Origin': origin
             },
-            body: JSON.stringify({ error: 'Method not allowed' })
+            body: { error: 'Method not allowed' }
         };
     }
     try {
@@ -61,7 +63,7 @@ export async function main(event, context) {
                 headers: {
                     'Access-Control-Allow-Origin': origin
                 },
-                body: JSON.stringify({ error: 'Missing required fields' })
+                body: { error: 'Missing required fields' }
             };
         }
         // Get Mailgun credentials from environment variables
@@ -75,7 +77,7 @@ export async function main(event, context) {
                 headers: {
                     'Access-Control-Allow-Origin': origin
                 },
-                body: JSON.stringify({ error: 'Email service not configured' })
+                body: { error: 'Email service not configured' }
             };
         }
         // Prepare email content
@@ -102,10 +104,10 @@ ${sanitizedMessage}
         const mailgun = new Mailgun(FormData);
         const mg = mailgun.client({
             username: "api",
-            key: apiKey,
+            key: apiKey || '',
             url: "https://api.eu.mailgun.net"
         });
-        const result = await mg.messages.create(domain, {
+        const result = await mg.messages.create(domain || '', {
             from: 'Mailgun Sandbox <postmaster@mail.abappm.com>',
             to: [toEmail],
             replyTo: `${sanitizedFullName} <${sanitizedEmail}>`,
@@ -120,11 +122,11 @@ ${sanitizedMessage}
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
-            body: JSON.stringify({
+            body: {
                 success: true,
                 message: 'Email sent successfully',
                 id: result.id
-            })
+            }
         };
     }
     catch (error) {
@@ -134,7 +136,7 @@ ${sanitizedMessage}
             headers: {
                 'Access-Control-Allow-Origin': origin
             },
-            body: JSON.stringify({ error: 'Internal server error' })
+            body: { error: 'Internal server error' }
         };
     }
 }
