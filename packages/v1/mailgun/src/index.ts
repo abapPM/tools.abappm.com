@@ -5,12 +5,16 @@
 // - MAILGUN_DOMAIN: Your Mailgun domain (e.g., mail.abappm.com)
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 
-// import sanitizeHtml from 'sanitize-html';
+import FormData from "form-data";
+import Mailgun from "mailgun.js";
+import sanitizeHtml from 'sanitize-html';
 
 export async function main (event: any, context: any) {
   try {
     // Check if request is from allowed domains
-    const origin = event.headers?.origin || event.headers?.Origin;
+    const headers = event.http?.headers || {};
+    const origin = headers.origin;
+
     const allowedDomains = [
       /^https?:\/\/.*\.abappm\.com$/,
       /^https?:\/\/.*\.apm\.to$/
@@ -29,7 +33,7 @@ export async function main (event: any, context: any) {
     }
 
     // Handle CORS preflight requests
-    const httpMethod = event.httpMethod || event.__ow_method || 'POST';
+    const httpMethod = event.http?.method?.toUpperCase() || 'POST';
     if (httpMethod === 'OPTIONS') {
       return {
         statusCode: 200,
@@ -54,8 +58,9 @@ export async function main (event: any, context: any) {
     }
 
     // Handle both string and object body formats
-    const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
-    const formData = body || event;
+    const rawBody = event.http?.body;
+    const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
+    const formData = body || {};
 
     // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
@@ -88,24 +93,24 @@ export async function main (event: any, context: any) {
     const subject = formData.subject || 'Contact Form Submission';
     const fullName = `${formData.firstName} ${formData.lastName}`;
 
-    // const sanitize = (str: string) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
+    const sanitize = (str: string) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
 
-    // const sanitizedFullName = sanitize(fullName);
-    // const sanitizedEmail = sanitize(formData.email);
-    // const sanitizedCompany = sanitize(formData.company || 'Not provided');
-    // const sanitizedSubject = sanitize(subject);
-    // const sanitizedMessage = sanitize(formData.message);
+    const sanitizedFullName = sanitize(fullName);
+    const sanitizedEmail = sanitize(formData.email);
+    const sanitizedCompany = sanitize(formData.company || 'Not provided');
+    const sanitizedSubject = sanitize(subject);
+    const sanitizedMessage = sanitize(formData.message);
 
     const emailBody = `
 New contact form submission from apm.to
 
-Name: ${fullName}
-Email: ${formData.email}
-Company: ${formData.company || 'Not provided'}
-Subject: ${subject}
+Name: ${sanitizedFullName}
+Email: ${sanitizedEmail}
+Company: ${sanitizedCompany}
+Subject: ${sanitizedSubject}
 
 Message:
-${formData.message}
+${sanitizedMessage}
         `.trim();
 
     return {

@@ -7,12 +7,14 @@
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = main;
-// import sanitizeHtml from 'sanitize-html';
+const tslib_1 = require("tslib");
+const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
 async function main(event, context) {
-    var _a, _b;
+    var _a, _b, _c, _d;
     try {
         // Check if request is from allowed domains
-        const origin = ((_a = event.headers) === null || _a === void 0 ? void 0 : _a.origin) || ((_b = event.headers) === null || _b === void 0 ? void 0 : _b.Origin);
+        const headers = ((_a = event.http) === null || _a === void 0 ? void 0 : _a.headers) || {};
+        const origin = headers.origin;
         const allowedDomains = [
             /^https?:\/\/.*\.abappm\.com$/,
             /^https?:\/\/.*\.apm\.to$/
@@ -28,7 +30,7 @@ async function main(event, context) {
             };
         }
         // Handle CORS preflight requests
-        const httpMethod = event.httpMethod || event.__ow_method || 'POST';
+        const httpMethod = ((_c = (_b = event.http) === null || _b === void 0 ? void 0 : _b.method) === null || _c === void 0 ? void 0 : _c.toUpperCase()) || 'POST';
         if (httpMethod === 'OPTIONS') {
             return {
                 statusCode: 200,
@@ -51,8 +53,9 @@ async function main(event, context) {
             };
         }
         // Handle both string and object body formats
-        const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
-        const formData = body || event;
+        const rawBody = (_d = event.http) === null || _d === void 0 ? void 0 : _d.body;
+        const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : rawBody;
+        const formData = body || {};
         // Validate required fields
         if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
             return {
@@ -80,22 +83,22 @@ async function main(event, context) {
         // Prepare email content
         const subject = formData.subject || 'Contact Form Submission';
         const fullName = `${formData.firstName} ${formData.lastName}`;
-        // const sanitize = (str: string) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
-        // const sanitizedFullName = sanitize(fullName);
-        // const sanitizedEmail = sanitize(formData.email);
-        // const sanitizedCompany = sanitize(formData.company || 'Not provided');
-        // const sanitizedSubject = sanitize(subject);
-        // const sanitizedMessage = sanitize(formData.message);
+        const sanitize = (str) => (0, sanitize_html_1.default)(str, { allowedTags: [], allowedAttributes: {} });
+        const sanitizedFullName = sanitize(fullName);
+        const sanitizedEmail = sanitize(formData.email);
+        const sanitizedCompany = sanitize(formData.company || 'Not provided');
+        const sanitizedSubject = sanitize(subject);
+        const sanitizedMessage = sanitize(formData.message);
         const emailBody = `
 New contact form submission from apm.to
 
-Name: ${fullName}
-Email: ${formData.email}
-Company: ${formData.company || 'Not provided'}
-Subject: ${subject}
+Name: ${sanitizedFullName}
+Email: ${sanitizedEmail}
+Company: ${sanitizedCompany}
+Subject: ${sanitizedSubject}
 
 Message:
-${formData.message}
+${sanitizedMessage}
         `.trim();
         return {
             statusCode: 200,

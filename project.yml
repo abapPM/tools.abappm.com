@@ -1,7 +1,5 @@
 packages:
   - name: v1
-    environment:
-      LOG_DESTINATIONS: '${LOG_DESTINATIONS}'
     functions:
       - name: certificates
         runtime: 'nodejs:18'
