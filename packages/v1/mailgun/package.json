@@ -2,6 +2,7 @@
   "name": "mailgun-sender",
   "version": "1.0.0",
   "description": "A web service to send emails using Mailgun",
+  "type": "module",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -b",
