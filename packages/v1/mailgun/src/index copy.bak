@@ -1,0 +1,13 @@
+// Mailgun email sending endpoint for DigitalOcean Functions
+// This endpoint should be deployed as a DigitalOcean serverless function
+// Environment variables needed:
+// - MAILGUN_API_KEY: Your Mailgun API key
+// - MAILGUN_DOMAIN: Your Mailgun domain (e.g., mail.abappm.com)
+// - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
+
+export async function main (event: any, context: any) {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ event, context })
+  };
+};
