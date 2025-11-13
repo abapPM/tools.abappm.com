@@ -5,7 +5,7 @@
 // - MAILGUN_DOMAIN: Your Mailgun domain (e.g., mail.abappm.com)
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 
-import sanitizeHtml from 'sanitize-html';
+// import sanitizeHtml from 'sanitize-html';
 
 export async function main (event: any, context: any) {
   try {
@@ -88,24 +88,24 @@ export async function main (event: any, context: any) {
     const subject = formData.subject || 'Contact Form Submission';
     const fullName = `${formData.firstName} ${formData.lastName}`;
 
-    const sanitize = (str: string) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
+    // const sanitize = (str: string) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
 
-    const sanitizedFullName = sanitize(fullName);
-    const sanitizedEmail = sanitize(formData.email);
-    const sanitizedCompany = sanitize(formData.company || 'Not provided');
-    const sanitizedSubject = sanitize(subject);
-    const sanitizedMessage = sanitize(formData.message);
+    // const sanitizedFullName = sanitize(fullName);
+    // const sanitizedEmail = sanitize(formData.email);
+    // const sanitizedCompany = sanitize(formData.company || 'Not provided');
+    // const sanitizedSubject = sanitize(subject);
+    // const sanitizedMessage = sanitize(formData.message);
 
     const emailBody = `
 New contact form submission from apm.to
 
-Name: ${sanitizedFullName}
-Email: ${sanitizedEmail}
-Company: ${sanitizedCompany}
-Subject: ${sanitizedSubject}
+Name: ${fullName}
+Email: ${formData.email}
+Company: ${formData.company || 'Not provided'}
+Subject: ${subject}
 
 Message:
-${sanitizedMessage}
+${formData.message}
         `.trim();
 
     return {

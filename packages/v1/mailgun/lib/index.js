@@ -7,8 +7,7 @@
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = main;
-const tslib_1 = require("tslib");
-const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
+// import sanitizeHtml from 'sanitize-html';
 async function main(event, context) {
     var _a, _b;
     try {
@@ -81,22 +80,22 @@ async function main(event, context) {
         // Prepare email content
         const subject = formData.subject || 'Contact Form Submission';
         const fullName = `${formData.firstName} ${formData.lastName}`;
-        const sanitize = (str) => (0, sanitize_html_1.default)(str, { allowedTags: [], allowedAttributes: {} });
-        const sanitizedFullName = sanitize(fullName);
-        const sanitizedEmail = sanitize(formData.email);
-        const sanitizedCompany = sanitize(formData.company || 'Not provided');
-        const sanitizedSubject = sanitize(subject);
-        const sanitizedMessage = sanitize(formData.message);
+        // const sanitize = (str: string) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
+        // const sanitizedFullName = sanitize(fullName);
+        // const sanitizedEmail = sanitize(formData.email);
+        // const sanitizedCompany = sanitize(formData.company || 'Not provided');
+        // const sanitizedSubject = sanitize(subject);
+        // const sanitizedMessage = sanitize(formData.message);
         const emailBody = `
 New contact form submission from apm.to
 
-Name: ${sanitizedFullName}
-Email: ${sanitizedEmail}
-Company: ${sanitizedCompany}
-Subject: ${sanitizedSubject}
+Name: ${fullName}
+Email: ${formData.email}
+Company: ${formData.company || 'Not provided'}
+Subject: ${subject}
 
 Message:
-${sanitizedMessage}
+${formData.message}
         `.trim();
         return {
             statusCode: 200,
