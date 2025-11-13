@@ -8,51 +8,51 @@
 import sanitizeHtml from 'sanitize-html';
 
 export async function main (event: any, context: any) {
-  // Check if request is from allowed domains
-  const origin = event.headers?.origin || event.headers?.Origin;
-  const allowedDomains = [
-    /^https?:\/\/.*\.abappm\.com$/,
-    /^https?:\/\/.*\.apm\.to$/
-  ];
-
-  const isAllowedOrigin = origin && allowedDomains.some(domain => domain.test(origin));
-
-  if (!isAllowedOrigin) {
-    return {
-      statusCode: 403,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: { error: 'Forbidden: Origin not allowed' }
-    };
-  }
-
-  // Handle CORS preflight requests
-  const httpMethod = event.httpMethod || event.__ow_method || 'POST';
-  if (httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': origin,
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type'
-      },
-      body: ''
-    };
-  }
-
-  // Only allow POST requests
-  if (httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: {
-        'Access-Control-Allow-Origin': origin
-      },
-      body: { error: 'Method not allowed' }
-    };
-  }
-
   try {
+    // Check if request is from allowed domains
+    const origin = event.headers?.origin || event.headers?.Origin;
+    const allowedDomains = [
+      /^https?:\/\/.*\.abappm\.com$/,
+      /^https?:\/\/.*\.apm\.to$/
+    ];
+
+    const isAllowedOrigin = origin && allowedDomains.some(domain => domain.test(origin));
+
+    if (!isAllowedOrigin) {
+      return {
+        statusCode: 403,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: { error: 'Forbidden: Origin not allowed' }
+      };
+    }
+
+    // Handle CORS preflight requests
+    const httpMethod = event.httpMethod || event.__ow_method || 'POST';
+    if (httpMethod === 'OPTIONS') {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': origin,
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type'
+        },
+        body: ''
+      };
+    }
+
+    // Only allow POST requests
+    if (httpMethod !== 'POST') {
+      return {
+        statusCode: 405,
+        headers: {
+          'Access-Control-Allow-Origin': origin
+        },
+        body: { error: 'Method not allowed' }
+      };
+    }
+
     // Handle both string and object body formats
     const body = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
     const formData = body || event;
