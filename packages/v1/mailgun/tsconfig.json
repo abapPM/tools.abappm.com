@@ -4,8 +4,7 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "strict": true,
-    "module": "ES2020",
-    "moduleResolution": "node",
+    "module": "commonjs",
     "outDir": "lib",
     "rootDir": "src",
     "target": "es2019"

@@ -1,4 +1,4 @@
-document.getElementById('mailgun-form').addEventListener('submit', async function (event) {
+document.getElementById('mailgun-form').addEventListener('submit', async function(event) {
   event.preventDefault();
   const firstName = document.getElementById('firstName').value;
   const lastName = document.getElementById('lastName').value;
@@ -14,7 +14,7 @@ document.getElementById('mailgun-form').addEventListener('submit', async functio
   resultDiv.innerHTML = 'Loading...';
 
   try {
-      const response = await fetch(`/api/v1/mailgun`, {
+    const response = await fetch(`/api/v1/mailgun`, {
       method: 'POST',
       body: JSON.stringify({ firstName, lastName, company, email, subject, message }),
     });

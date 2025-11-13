@@ -1,13 +1,17 @@
+"use strict";
 // Mailgun email sending endpoint for DigitalOcean Functions
 // This endpoint should be deployed as a DigitalOcean serverless function
 // Environment variables needed:
 // - MAILGUN_API_KEY: Your Mailgun API key
 // - MAILGUN_DOMAIN: Your Mailgun domain (e.g., mail.abappm.com)
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
-import FormData from "form-data";
-import Mailgun from "mailgun.js";
-import sanitizeHtml from 'sanitize-html';
-export async function main(event, context) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.main = main;
+const tslib_1 = require("tslib");
+const form_data_1 = tslib_1.__importDefault(require("form-data"));
+const mailgun_js_1 = tslib_1.__importDefault(require("mailgun.js"));
+const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
+async function main(event, context) {
     var _a, _b;
     return {
         statusCode: 200,
@@ -83,7 +87,7 @@ export async function main(event, context) {
         // Prepare email content
         const subject = formData.subject || 'Contact Form Submission';
         const fullName = `${formData.firstName} ${formData.lastName}`;
-        const sanitize = (str) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
+        const sanitize = (str) => (0, sanitize_html_1.default)(str, { allowedTags: [], allowedAttributes: {} });
         const sanitizedFullName = sanitize(fullName);
         const sanitizedEmail = sanitize(formData.email);
         const sanitizedCompany = sanitize(formData.company || 'Not provided');
@@ -101,7 +105,7 @@ Message:
 ${sanitizedMessage}
         `.trim();
         // Send email via Mailgun API
-        const mailgun = new Mailgun(FormData);
+        const mailgun = new mailgun_js_1.default(form_data_1.default);
         const mg = mailgun.client({
             username: "api",
             key: apiKey || '',
