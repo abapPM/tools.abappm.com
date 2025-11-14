@@ -5,9 +5,9 @@
 // - MAILGUN_DOMAIN: Your Mailgun domain (e.g., mail.abappm.com)
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 
-import FormData from "form-data";
-import Mailgun from "mailgun.js";
-import sanitizeHtml from 'sanitize-html';
+// import FormData from "form-data";
+// import Mailgun from "mailgun.js";
+// import sanitizeHtml from 'sanitize-html';
 
 export async function main (event: any, context: any) {
   console.log('environment', process.env);

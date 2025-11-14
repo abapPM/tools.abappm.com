@@ -7,8 +7,9 @@
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = main;
-const tslib_1 = require("tslib");
-const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
+// import FormData from "form-data";
+// import Mailgun from "mailgun.js";
+// import sanitizeHtml from 'sanitize-html';
 async function main(event, context) {
     var _a, _b, _c, _d;
     console.log('environment', process.env);
@@ -88,7 +89,7 @@ async function main(event, context) {
         // Prepare email content
         const subject = formData.subject || 'Contact Form Submission';
         const fullName = `${formData.firstName} ${formData.lastName}`;
-        const sanitize = (str) => (0, sanitize_html_1.default)(str, { allowedTags: [], allowedAttributes: {} });
+        const sanitize = (str) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
         const sanitizedFullName = sanitize(fullName);
         const sanitizedEmail = sanitize(formData.email);
         const sanitizedCompany = sanitize(formData.company || 'Not provided');
