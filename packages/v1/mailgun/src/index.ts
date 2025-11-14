@@ -10,6 +10,12 @@ import Mailgun from "mailgun.js";
 import sanitizeHtml from 'sanitize-html';
 
 export async function main (event: any, context: any) {
+  console.log('environment', process.env);
+  return {
+    statusCode: 200,
+    body: { environment: process.env }
+  };
+
   try {
     // Check if request is from allowed domains
     const headers = event.http?.headers || {};

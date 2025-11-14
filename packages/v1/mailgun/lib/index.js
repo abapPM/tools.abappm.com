@@ -11,6 +11,11 @@ const tslib_1 = require("tslib");
 const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
 async function main(event, context) {
     var _a, _b, _c, _d;
+    console.log('environment', process.env);
+    return {
+        statusCode: 200,
+        body: { environment: process.env }
+    };
     try {
         // Check if request is from allowed domains
         const headers = ((_a = event.http) === null || _a === void 0 ? void 0 : _a.headers) || {};
@@ -134,7 +139,7 @@ ${sanitizedMessage}
         //   };
     }
     catch (error) {
-        console.error('Error processing request:', error);
+        console.error('Error processing request:', error.message);
         return {
             statusCode: 500,
             headers: {
