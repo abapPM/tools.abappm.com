@@ -150,8 +150,8 @@ ${sanitizedMessage}
     //     }
     //   };
 
-  } catch (error) {
-    console.error('Error processing request:', error);
+  } catch (error: any) {
+    console.error('Error processing request:', error.message);
     return {
       statusCode: 500,
       headers: {

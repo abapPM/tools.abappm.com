@@ -1,20 +1,20 @@
 packages:
   - name: v1
+    environment:
+      MAILGUN_API_KEY: "${MAILGUN_API_KEY}"
+      MAILGUN_DOMAIN: "${MAILGUN_DOMAIN}"
+      TO_EMAIL: "${TO_EMAIL}"
+      LOG_DESTINATIONS: "${LOG_DESTINATIONS}"
     functions:
       - name: certificates
-        runtime: 'nodejs:18'
+        runtime: "nodejs:18"
         limits:
           timeout: 10000
       - name: mailgun
-        environment:
-          MAILGUN_API_KEY: '${MAILGUN_API_KEY}'
-          MAILGUN_DOMAIN: '${MAILGUN_DOMAIN}'
-          TO_EMAIL: '${TO_EMAIL}'
-        runtime: 'nodejs:18'
+        runtime: "nodejs:18"
         limits:
           timeout: 1000
       - name: version-shield-json
-        runtime: 'nodejs:18'
+        runtime: "nodejs:18"
         limits:
           timeout: 1000
-

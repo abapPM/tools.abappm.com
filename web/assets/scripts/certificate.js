@@ -2,9 +2,9 @@ document.getElementById('certificate-form').addEventListener('submit', async fun
   event.preventDefault();
   const domain = document.getElementById('domain').value;
 
-  document.getElementById('certificate-result').innerHTML = '';
   document.getElementById('badge-result').innerHTML = '';
   document.getElementById('badge-markdown').innerHTML = '';
+  document.getElementById('mailgun-result').innerHTML = '';
   updateCopyButtonVisibility('certificate-result', 'copy-cert-btn');
 
   const resultDiv = document.getElementById('certificate-result');

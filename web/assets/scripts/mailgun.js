@@ -7,7 +7,9 @@ document.getElementById('mailgun-form').addEventListener('submit', async functio
   const subject = document.getElementById('subject').value;
   const message = document.getElementById('message').value;
 
-  document.getElementById('mailgun-result').innerHTML = '';
+  document.getElementById('certificate-result').innerHTML = '';
+  document.getElementById('badge-result').innerHTML = '';
+  document.getElementById('badge-markdown').innerHTML = '';
   updateCopyButtonVisibility('mailgun-result', 'copy-mailgun-btn');
 
   const resultDiv = document.getElementById('mailgun-result');

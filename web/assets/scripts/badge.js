@@ -16,7 +16,7 @@ document.getElementById('shield-form').addEventListener('submit', async function
 
   document.getElementById('certificate-result').innerHTML = '';
   document.getElementById('badge-result').innerHTML = '';
-  document.getElementById('badge-markdown').innerHTML = '';
+  document.getElementById('mailgun-result').innerHTML = '';
   updateCopyButtonVisibility('badge-markdown', 'copy-badge-btn');
 
   document.getElementById('badge-markdown').innerHTML = 'Loading...';
