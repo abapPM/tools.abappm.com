@@ -7,10 +7,10 @@ packages:
           timeout: 10000
       - name: mailgun
         environment:
-          MAILGUN_API_KEY: ${MAILGUN_API_KEY}
-          MAILGUN_DOMAIN: ${MAILGUN_DOMAIN}
-          TO_EMAIL: ${TO_EMAIL}
-          LOG_DESTINATIONS: "${LOG_DESTINATIONS}"
+          MAILGUN_API_KEY: '${MAILGUN_API_KEY}'
+          MAILGUN_DOMAIN: '${MAILGUN_DOMAIN}'
+          TO_EMAIL: '${TO_EMAIL}'
+          LOG_DESTINATIONS: '[{"logtail":{"token":"mkYtgMqQgmgRjXVA7xFqpp76"}}]'
         runtime: "nodejs:18"
         limits:
           timeout: 1000
