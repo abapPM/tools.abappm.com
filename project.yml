@@ -1,7 +1,7 @@
+environment:
+  LOG_DESTINATIONS: '[{"logtail":{"token":"bMofh3xNemg1bxSyGw4Ug8rk"}}]'
 packages:
   - name: v1
-    environment:
-      LOG_DESTINATIONS: '[{"logtail":{"token":"bMofh3xNemg1bxSyGw4Ug8rk"}}]'
     functions:
       - name: certificates
         runtime: "nodejs:18"
