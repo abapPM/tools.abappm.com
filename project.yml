@@ -1,5 +1,5 @@
 environment:
-  LOG_DESTINATIONS: "[{\"logtail\":{\"token\":\"bMofh3xNemg1bxSyGw4Ug8rk\"}}]"
+  LOG_DESTINATIONS: "[{\"logtail\":{\"token\":\"${LOGTAIL_TOKEN}\"}}]"
 packages:
   - name: v1
     functions:
