@@ -1,4 +1,5 @@
 environment:
+  LOGTAIL_TOKEN: "${LOGTAIL_TOKEN}"
   LOG_DESTINATIONS: "[{\"logtail\":{\"token\":\"${LOGTAIL_TOKEN}\"}}]"
 packages:
   - name: v1
