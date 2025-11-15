@@ -1,5 +1,7 @@
 packages:
   - name: v1
+    environment:
+      LOG_DESTINATIONS: '[{"logtail":{"token":"bMofh3xNemg1bxSyGw4Ug8rk"}}]'
     functions:
       - name: certificates
         runtime: "nodejs:18"
@@ -10,7 +12,6 @@ packages:
           MAILGUN_API_KEY: '${MAILGUN_API_KEY}'
           MAILGUN_DOMAIN: '${MAILGUN_DOMAIN}'
           TO_EMAIL: '${TO_EMAIL}'
-          LOG_DESTINATIONS: '${LOG_DESTINATIONS}'
         runtime: "nodejs:18"
         limits:
           timeout: 1000
