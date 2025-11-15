@@ -1,5 +1,5 @@
 environment:
-  LOG_DESTINATIONS: '[{"logtail":{"token":"bMofh3xNemg1bxSyGw4Ug8rk"}}]'
+  LOG_DESTINATIONS: "[{\"logtail\":{\"token\":\"bMofh3xNemg1bxSyGw4Ug8rk\"}}]"
 packages:
   - name: v1
     functions:
@@ -9,9 +9,9 @@ packages:
           timeout: 10000
       - name: mailgun
         environment:
-          MAILGUN_API_KEY: '${MAILGUN_API_KEY}'
-          MAILGUN_DOMAIN: '${MAILGUN_DOMAIN}'
-          TO_EMAIL: '${TO_EMAIL}'
+          MAILGUN_API_KEY: "${MAILGUN_API_KEY}"
+          MAILGUN_DOMAIN: "${MAILGUN_DOMAIN}"
+          TO_EMAIL: "${TO_EMAIL}"
         runtime: "nodejs:18"
         limits:
           timeout: 1000
