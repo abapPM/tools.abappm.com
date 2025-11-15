@@ -7,16 +7,17 @@
 // - TO_EMAIL: Email address to receive contact form submissions (e.g., hello@abappm.com)
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = main;
+const tslib_1 = require("tslib");
 // import FormData from "form-data";
 // import Mailgun from "mailgun.js";
-// import sanitizeHtml from 'sanitize-html';
+const sanitize_html_1 = tslib_1.__importDefault(require("sanitize-html"));
 async function main(event, context) {
+    // console.log('environment', process.env);
+    // return {
+    //   statusCode: 200,
+    //   body: { environment: process.env }
+    // };
     var _a, _b, _c, _d;
-    console.log('environment', process.env);
-    return {
-        statusCode: 200,
-        body: { environment: process.env }
-    };
     try {
         // Check if request is from allowed domains
         const headers = ((_a = event.http) === null || _a === void 0 ? void 0 : _a.headers) || {};
@@ -89,23 +90,23 @@ async function main(event, context) {
         // Prepare email content
         const subject = formData.subject || 'Contact Form Submission';
         const fullName = `${formData.firstName} ${formData.lastName}`;
-        const sanitize = (str) => sanitizeHtml(str, { allowedTags: [], allowedAttributes: {} });
+        const sanitize = (str) => (0, sanitize_html_1.default)(str, { allowedTags: [], allowedAttributes: {} });
         const sanitizedFullName = sanitize(fullName);
         const sanitizedEmail = sanitize(formData.email);
         const sanitizedCompany = sanitize(formData.company || 'Not provided');
         const sanitizedSubject = sanitize(subject);
         const sanitizedMessage = sanitize(formData.message);
         const emailBody = `
-New contact form submission from apm.to
+  New contact form submission from apm.to
 
-Name: ${sanitizedFullName}
-Email: ${sanitizedEmail}
-Company: ${sanitizedCompany}
-Subject: ${sanitizedSubject}
+  Name: ${sanitizedFullName}
+  Email: ${sanitizedEmail}
+  Company: ${sanitizedCompany}
+  Subject: ${sanitizedSubject}
 
-Message:
-${sanitizedMessage}
-        `.trim();
+  Message:
+  ${sanitizedMessage}
+          `.trim();
         return {
             statusCode: 200,
             body: { emailBody }
