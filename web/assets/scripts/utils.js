@@ -16,3 +16,9 @@ function updateCopyButtonVisibility(divId, buttonId) {
   btn.style.display = div.textContent.trim() ? '' : 'none';
 }
 
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
