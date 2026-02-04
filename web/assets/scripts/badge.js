@@ -25,14 +25,16 @@ document.getElementById('shield-form').addEventListener('submit', async function
     const response = await fetch(url);
     const data = await response.json();
 
-    const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
+    // const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
+    const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`;
+    const escapedUrl = escapeHtml(baddgeUrl);
     document.getElementById('badge-result').innerHTML =
-      `<pre>Image:<br/><br/><img src="${baddgeUrl}" /></pre>`;
+      `<pre>Image:<br/><br/><img src="${escapedUrl}" /></pre>`;
     document.getElementById('badge-markdown').innerHTML =
-      `<pre class="markdown-pre">Markdown:<br/><br/><span class="markdown-code">![Version](${baddgeUrl})</span></pre><br/>`;
+      `<pre class="markdown-pre">Markdown:<br/><br/><span class="markdown-code">![Version](${escapedUrl})</span></pre><br/>`;
     updateCopyButtonVisibility('badge-markdown', 'copy-badge-btn');
   } catch (error) {
-    document.getElementById('badge-result').innerHTML = `<span class="error">${error.message}</span>`;
+    document.getElementById('badge-result').innerHTML = `<span class="error">${escapeHtml(error.message)}</span>`;
   }
 
 });
