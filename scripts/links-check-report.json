@@ -1,0 +1,11 @@
+{
+  "source": "C:\\GitHub\\abapPM\\tools.abappm.com\\scripts\\links-extracted.json",
+  "checkedAt": "2026-03-20 17:27:54",
+  "includeOk": false,
+  "summary": {
+    "ok": 60,
+    "failed": 0,
+    "total": 60
+  },
+  "results": []
+}

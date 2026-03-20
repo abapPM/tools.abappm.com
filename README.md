@@ -23,9 +23,9 @@ Note: This is a free service with limited performance and scalability.
 
 This is a service for the [shields.io](https://shields.io/badges/endpoint-badge) endpoint compatible JSON.
 
-<a href="https://supportukrainenow.org/"><img src="https://raw.githubusercontent.com/abapPM/tools.abappm.com/refs/heads/main/web/Ukraine-heart-shape-flag.svg" height="25" alt="Support Ukraine"></a>
+<a href="https://supportukrainenow.org/"><img src="https://raw.githubusercontent.com/abapPM/tools.abappm.com/refs/heads/main/web/assets/images/Ukraine-heart-shape-flag.svg" height="25" alt="Support Ukraine"></a>
 
-The service was created by [Alexander Tsybulsky](https://github.com/sbcgua) from Ukraine. Please [support Ukraine](https://war.ukraine.ua/support-ukraine/)!
+The service was created by [Alexander Tsybulsky](https://github.com/sbcgua) from Ukraine. Please [support Ukraine](https://u24.gov.ua/)!
 
 You can find the original code on [GitHub](https://github.com/sbcgua/abap-package-version-shield) and the original documentation on [here](https://sbcgua.github.io/abap-package-version-shield).
 
@@ -43,7 +43,7 @@ ENDINTERFACE.
 
 ### TL;DR
 
-<img src="https://tools.abappm.com/tldr-badge.svg" alt="abapgit version badge" />
+<img src="https://tools.abappm.com/assets/images/tldr-badge.svg" alt="abapgit version badge" />
 
 Markdown for creating this ABAP Package Version Badge:
 
@@ -110,7 +110,7 @@ https://img.shields.io/endpoint?url=https://shield.abappm.com/...&label=version&
 
 Example:
 
-<img src="https://tools.abappm.com/abapgit-badge.svg" alt="abapgit version badge" />
+<img src="https://tools.abappm.com/assets/images/abapgit-badge.svg" alt="abapgit version badge" />
 
 ```
 https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version&label=version&color=blue

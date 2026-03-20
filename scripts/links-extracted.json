@@ -1,0 +1,611 @@
+{
+    "repository":  "C:\\GitHub\\abapPM\\tools.abappm.com",
+    "generated":  "2026-03-20 17:24:38",
+    "linkCount":  60,
+    "links":  [
+                  {
+                      "url":  "https://abaplint.org",
+                      "sources":  [
+                                      {
+                                          "path":  "CONTRIBUTING.md",
+                                          "line":  41
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://abappm.com",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  9
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://api.eu.mailgun.net",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\mailgun\\lib\\index.js",
+                                          "line":  119
+                                      },
+                                      {
+                                          "path":  "packages\\v1\\mailgun\\src\\index copy.bak",
+                                          "line":  123
+                                      },
+                                      {
+                                          "path":  "packages\\v1\\mailgun\\src\\index.ts",
+                                          "line":  133
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://api.reuse.software/badge/github.com/abapPM/tools.abappm.com",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  5
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://api.reuse.software/info/github.com/abapPM/tools.abappm.com",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  5
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://apm.to",
+                      "sources":  [
+                                      {
+                                          "path":  "LICENSE",
+                                          "line":  3
+                                      },
+                                      {
+                                          "path":  "README.md",
+                                          "line":  247
+                                      },
+                                      {
+                                          "path":  "REUSE.toml",
+                                          "line":  5
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\version-shield-json\\handler.js",
+                                          "line":  61
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://bsky.app/profile/marcf.be",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  249
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://docs.abapgit.org/user-guide/reference/apack.html",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  78
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://EditorConfig.org",
+                      "sources":  [
+                                      {
+                                          "path":  ".editorconfig",
+                                          "line":  1
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://fonts.googleapis.com",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  11
+                                      },
+                                      {
+                                          "path":  "web\\mailgun.html",
+                                          "line":  11
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://fonts.googleapis.com/css2?family=Righteous\u0026display=swap",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  13
+                                      },
+                                      {
+                                          "path":  "web\\mailgun.html",
+                                          "line":  13
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://fonts.gstatic.com",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  12
+                                      },
+                                      {
+                                          "path":  "web\\mailgun.html",
+                                          "line":  12
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://fsfe.org",
+                      "sources":  [
+                                      {
+                                          "path":  ".github\\workflows\\reuse.yml",
+                                          "line":  1
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/.github/blob/main/CODE_OF_CONDUCT.md",
+                      "sources":  [
+                                      {
+                                          "path":  "CONTRIBUTING.md",
+                                          "line":  3
+                                      },
+                                      {
+                                          "path":  "README.md",
+                                          "line":  4
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abappm/tools.abappm.com.git",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\certificates\\package.json",
+                                          "line":  14
+                                      },
+                                      {
+                                          "path":  "packages\\v1\\mailgun\\package.json",
+                                          "line":  15
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/tools.abappm.com/blob/main/README.md#abap-package-version-badge",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  30
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/tools.abappm.com/blob/main/README.md#certificate-fetcher",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  103
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/tools.abappm.com/blob/main/README.md#mailgun-sender",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\mailgun.html",
+                                          "line":  27
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/tools.abappm.com/compare/2.0.0...main",
+                      "sources":  [
+                                      {
+                                          "path":  "CHANGELOG.md",
+                                          "line":  22
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/tools.abappm.com/releases/tag/1.0.0",
+                      "sources":  [
+                                      {
+                                          "path":  "CHANGELOG.md",
+                                          "line":  24
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/abapPM/tools.abappm.com/releases/tag/2.0.0",
+                      "sources":  [
+                                      {
+                                          "path":  "CHANGELOG.md",
+                                          "line":  23
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/sbcgua",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  28
+                                      },
+                                      {
+                                          "path":  "REUSE.toml",
+                                          "line":  10
+                                      },
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  28
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/sbcgua/abap-package-version-shield",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  241
+                                      },
+                                      {
+                                          "path":  "README.md",
+                                          "line":  30
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/sbcgua/abap-package-version-shield.git",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\version-shield-json\\package.json",
+                                          "line":  8
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://github.com/sbcgua/abap-package-version-shield/blob/master/package.json",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  241
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://gitlab.com/fernandofurtado/abap-markdown/-/raw/master/src/zmarkdown.clas.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\version-shield-json\\handler.js",
+                                          "line":  60
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?color=success",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  4
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/endpoint?url=https://shield.abappm.com/",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  106
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/endpoint?url=https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version\u0026label=version\u0026color=blue",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  116
+                                      },
+                                      {
+                                          "path":  "README.md",
+                                          "line":  118
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/endpoint?url=https://shield.abappm.com/github/Marc-Bernard-Tools/MBT-Listcube/src/%2523mbtools%2523cl_tool_bw_listcube.clas.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  123
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/endpoint?url=https://shield.abappm.com/github/owner/repo/src/zif_project_version.intf.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  51
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/github/license/abapPM/tools.abappm.com?label=License\u0026color=success",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  3
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://img.shields.io/github/v/release/abapPM/tools.abappm.com?label=Version\u0026color=blue",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  1
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://keepachangelog.com/en/1.0.0/",
+                      "sources":  [
+                                      {
+                                          "path":  "CHANGELOG.md",
+                                          "line":  5
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://linkedin.com/in/marcfbe",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  249
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://raw.githubusercontent.com/abapGit/abapGit/refs/heads/main/src/zif_abapgit_version.intf.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\version-shield-json\\handler.js",
+                                          "line":  59
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://raw.githubusercontent.com/abapPM/tools.abappm.com/main/certificates_response.json",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  145
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://raw.githubusercontent.com/abapPM/tools.abappm.com/refs/heads/main/web/assets/images/Ukraine-heart-shape-flag.svg",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  26
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://sbcgua.github.io/abap-package-version-shield",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  30
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string",
+                      "sources":  [
+                                      {
+                                          "path":  "packages\\v1\\version-shield-json\\lib\\parse.js",
+                                          "line":  71
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://semver.org/spec/v2.0.0.html",
+                      "sources":  [
+                                      {
+                                          "path":  "CHANGELOG.md",
+                                          "line":  6
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shield.abappm.com/bitbucket/marcfbe/abapgit/-main/src/zif_test.intf.abap/c_version",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  74
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shield.abappm.com/github/abapGit/abapGit/src/zif_abapgit_version.intf.abap/c_abap_version",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  72
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shield.abappm.com/github/ABAP-Logger/ABAP-Logger/.apack-manifest.xml",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  83
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shield.abappm.com/github/ABAP-Logger/demos/.apack-manifest.xml/dependencies/github.com/ABAP-Logger/ABAP-Logger",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  85
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shield.abappm.com/github/Marc-Bernard-Tools/MBT-Listcube/src/%23mbtools%23cl_tool_bw_listcube.clas.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  75
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shield.abappm.com/gitlab/fernandofurtado/abap-markdown/src/zmarkdown.clas.abap",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  73
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shields.io/badges/endpoint-badge",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  24
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://shields.io/endpoint-badge",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  103
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://supportukrainenow.org/",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  26
+                                      },
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  27
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://tools.abappm.com",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  127
+                                      },
+                                      {
+                                          "path":  "README.md",
+                                          "line":  231
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://tools.abappm.com/",
+                      "sources":  [
+                                      {
+                                          "path":  "web\\404.html",
+                                          "line":  23
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://tools.abappm.com/api/v1/certificates?domain=example.com",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  138
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://tools.abappm.com/assets/images/abapgit-badge.svg",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  113
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://tools.abappm.com/assets/images/tldr-badge.svg",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  46
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://u24.gov.ua/",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  28
+                                      },
+                                      {
+                                          "path":  "web\\index.html",
+                                          "line":  28
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%202.svg",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  13
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://www.digitalocean.com/?refcode=ec229ff11f84\u0026utm_campaign=Referral_Invite\u0026utm_medium=Referral_Program\u0026utm_source=badge",
+                      "sources":  [
+                                      {
+                                          "path":  "README.md",
+                                          "line":  13
+                                      }
+                                  ]
+                  },
+                  {
+                      "url":  "https://www.iso.org/iso-8601-date-and-time-format.html",
+                      "sources":  [
+                                      {
+                                          "path":  "CHANGELOG.md",
+                                          "line":  7
+                                      }
+                                  ]
+                  }
+              ]
+}
