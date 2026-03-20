@@ -4,7 +4,7 @@ document.getElementById('certificate-form').addEventListener('submit', async fun
 
   document.getElementById('badge-result').innerHTML = '';
   document.getElementById('badge-markdown').innerHTML = '';
-  document.getElementById('mailgun-result').innerHTML = '';
+  // document.getElementById('mailgun-result').innerHTML = '';
   updateCopyButtonVisibility('certificate-result', 'copy-cert-btn');
 
   const resultDiv = document.getElementById('certificate-result');
