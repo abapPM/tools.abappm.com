@@ -5,7 +5,7 @@ packages:
   - name: v1
     functions:
       - name: certificates
-        runtime: "nodejs:18"
+        runtime: "nodejs:24"
         limits:
           timeout: 10000
       - name: mailgun
@@ -13,10 +13,10 @@ packages:
           MAILGUN_API_KEY: "${MAILGUN_API_KEY}"
           MAILGUN_DOMAIN: "${MAILGUN_DOMAIN}"
           TO_EMAIL: "${TO_EMAIL}"
-        runtime: "nodejs:18"
+        runtime: "nodejs:24"
         limits:
           timeout: 1000
       - name: version-shield-json
-        runtime: "nodejs:18"
+        runtime: "nodejs:24"
         limits:
           timeout: 1000
