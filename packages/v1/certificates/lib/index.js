@@ -41,38 +41,59 @@ function isValidDomain(domain) {
 }
 // Utility function to get certificates for a domain
 function getCertificatesForDomain(domain) {
-    const options = {
-        host: domain,
-        port: 443,
-        agent: false,
-        rejectUnauthorized: false,
-        timeout: 10000,
-    };
     return new Promise((resolve, reject) => {
-        const req = node_https_1.default.request(options, (res) => {
-            const certificate = res.socket.getPeerCertificate(true);
-            if (!certificate) {
-                return reject(new Error('No certificate found'));
-            }
-            const peerCertificate = formatCertificate(certificate);
-            const intermediateCertificates = [];
-            let currentCert = certificate;
-            while (currentCert && currentCert.issuerCertificate) {
-                if (currentCert === currentCert.issuerCertificate)
-                    break;
-                intermediateCertificates.push(formatCertificate(currentCert.issuerCertificate));
-                currentCert = currentCert.issuerCertificate;
-            }
-            resolve({
-                domain,
-                peerCertificate,
-                intermediateCertificates,
+        // First try with certificate validation enabled (secure)
+        const secureOptions = {
+            host: domain,
+            port: 443,
+            agent: false,
+            rejectUnauthorized: true,
+            timeout: 10000,
+        };
+        const tryRequest = (options, allowInsecure = false) => {
+            const req = node_https_1.default.request(options, (res) => {
+                const certificate = res.socket.getPeerCertificate(true);
+                if (!certificate) {
+                    return reject(new Error('No certificate found'));
+                }
+                const peerCertificate = formatCertificate(certificate);
+                const intermediateCertificates = [];
+                let currentCert = certificate;
+                while (currentCert && currentCert.issuerCertificate) {
+                    if (currentCert === currentCert.issuerCertificate)
+                        break;
+                    intermediateCertificates.push(formatCertificate(currentCert.issuerCertificate));
+                    currentCert = currentCert.issuerCertificate;
+                }
+                resolve({
+                    domain,
+                    peerCertificate,
+                    intermediateCertificates,
+                });
             });
-        });
-        req.on('error', (error) => {
-            reject(error);
-        });
-        req.end();
+            req.on('error', (error) => {
+                var _a;
+                // If validation failed and we haven't tried insecure yet, retry without validation
+                if (!allowInsecure && (error.code === 'CERT_HAS_EXPIRED' || error.code === 'SELF_SIGNED_CERT_IN_CHAIN' || error.code === 'UNABLE_TO_VERIFY_LEAF_SIGNATURE' || error.code === 'DEPTH_ZERO_SELF_SIGNED_CERT' || error.code === 'CERT_UNTRUSTED' || ((_a = error.message) === null || _a === void 0 ? void 0 : _a.includes('certificate')))) {
+                    console.log(`Certificate validation failed for ${domain}, retrying without validation: ${error.message}`);
+                    // codeql[js/disabling-certificate-validation]: Intentionally disabling validation as fallback for certificate inspection tool
+                    // This allows retrieving certificates from servers with invalid certificates for inspection/debugging purposes
+                    const insecureOptions = {
+                        host: domain,
+                        port: 443,
+                        agent: false,
+                        rejectUnauthorized: false, // nosemgrep: js.disabling-certificate-validation
+                        timeout: 10000,
+                    };
+                    tryRequest(insecureOptions, true);
+                }
+                else {
+                    reject(error);
+                }
+            });
+            req.end();
+        };
+        tryRequest(secureOptions);
     });
 }
 function formatCertificate(cert) {
