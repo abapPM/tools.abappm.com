@@ -43,7 +43,7 @@ https.get.mockImplementation((url, handler) => {
         resMock.write('  constants version type string value \'25.11.1968-beta.1\'.');
         resMock.write('endinterface.');
     } else if (url === 'https://raw.githubusercontent.com/abapPM/abapPM-Package-Arg/master/src/%23apmg%23if_package_arg.intf.abap') {
-        resMock.write('interface #apmg#if_package_arg.');
+        resMock.write('interface /apmg/if_package_arg.');
         resMock.write('  constants c_version type string value \'1.0.0\'.');
         resMock.write('endinterface.');
     } else {

@@ -1,37 +1,36 @@
 {
-  "name": "abap-package-version-shield",
-  "version": "1.4.0",
-  "description": "Custom handler for shields.io to display abap package version",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sbcgua/abap-package-version-shield.git"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:e2e": "jest -c test/jest.e2e.config.js",
-    "test:e2e:dev": "env E2E_TARGET=dev jest -c test/jest.e2e.config.js",
-    "test:e2e:qa": "env E2E_TARGET=qa jest -c test/jest.e2e.config.js",
-    "lint": "eslint . lib"
-  },
   "author": "Alexander Tsybulsky",
+  "dependencies": {
+    "fast-xml-parser": "5.9.2"
+  },
+  "description": "Custom handler for shields.io to display abap package version",
+  "devDependencies": {
+    "eslint": "10.5.0",
+    "jest": "30.4.2"
+  },
   "engines": {
     "node": ">=24"
-  },
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "10.4.0",
-    "jest": "30.4.2",
-    "node-fetch": "3.3.2"
-  },
-  "dependencies": {
-    "fast-xml-parser": "5.8.0"
   },
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
       "e2e"
     ]
-  }
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "name": "abap-package-version-shield",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sbcgua/abap-package-version-shield.git"
+  },
+  "scripts": {
+    "lint": "eslint . lib",
+    "test": "jest",
+    "test:e2e": "jest -c test/jest.e2e.config.js",
+    "test:e2e:dev": "env E2E_TARGET=dev jest -c test/jest.e2e.config.js",
+    "test:e2e:qa": "env E2E_TARGET=qa jest -c test/jest.e2e.config.js",
+    "test:watch": "jest --watch"
+  },
+  "version": "1.5.0"
 }

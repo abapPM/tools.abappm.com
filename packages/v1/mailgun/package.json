@@ -20,13 +20,13 @@
   "license": "MIT",
   "dependencies": {
     "form-data": "4.0.6",
-    "mailgun.js": "13.0.1",
-    "sanitize-html": "2.17.4"
+    "mailgun.js": "13.2.0",
+    "sanitize-html": "2.17.5"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
     "@types/sanitize-html": "2.16.1",
     "typescript": "6.0.3",
-    "vitest": "4.1.7"
+    "vitest": "4.1.9"
   }
 }
