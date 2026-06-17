@@ -42,6 +42,10 @@ https.get.mockImplementation((url, handler) => {
         resMock.write('interface zif_test.');
         resMock.write('  constants version type string value \'25.11.1968-beta.1\'.');
         resMock.write('endinterface.');
+    } else if (url === 'https://raw.githubusercontent.com/abapPM/abapPM-Package-Arg/master/src/%23apmg%23if_package_arg.intf.abap') {
+        resMock.write('interface /apmg/if_package_arg.');
+        resMock.write('  constants c_version type string value \'1.0.0\'.');
+        resMock.write('endinterface.');
     } else {
         resMock.statusCode = 404;
     }
@@ -151,6 +155,40 @@ describe('test with path params', () => {
 
         expect(console.log).toHaveBeenNthCalledWith(1, 'Requested path:', event.path);
         expect(console.log).toHaveBeenNthCalledWith(2, 'URL:', 'https://bitbucket.org/marcfbe/abapgit/raw/main/src/zif_test.intf.abap');
+        expect(console.log).toHaveBeenNthCalledWith(3, 'fetch statusCode: 200');
+    });
+
+    test('should work with namespaced object (github)', async () => {
+        const event = {
+            resource: '/version-shield-json/{sourcePath}',
+            path: '/version-shield-json/github/abapPM/abapPM-Package-Arg/src/%23apmg%23if_package_arg.intf.abap/c_version',
+            pathParameters: {
+                sourcePath: 'github/abapPM/abapPM-Package-Arg/src/%23apmg%23if_package_arg.intf.abap/c_version'
+            },
+        };
+        const context = {};
+
+        global.console = {
+            log: jest.fn(),
+            error: jest.fn(),
+        };
+
+        await expect(handler.getShieldJson(event, context)).resolves.toEqual({
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'v1.0.0',
+                schemaVersion: 1,
+                label: 'abap package version',
+                color: 'orange',
+            }),
+        });
+
+        expect(console.log).toHaveBeenNthCalledWith(1, 'Requested path:', event.path);
+        expect(console.log).toHaveBeenNthCalledWith(2, 'URL:', 'https://raw.githubusercontent.com/abapPM/abapPM-Package-Arg/master/src/%23apmg%23if_package_arg.intf.abap');
         expect(console.log).toHaveBeenNthCalledWith(3, 'fetch statusCode: 200');
     });
 
