@@ -25,8 +25,8 @@ document.getElementById('shield-form').addEventListener('submit', async function
     const response = await fetch(url);
     const data = await response.json();
 
-    // const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
-    const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`;
+    const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`.replace(/%/g, '%25');
+    // const baddgeUrl = `https://img.shields.io/endpoint?url=https://shield.abappm.com${url}`;
     const escapedUrl = escapeHtml(baddgeUrl);
     document.getElementById('badge-result').innerHTML =
       `<pre>Image:<br/><br/><img src="${escapedUrl}" /></pre>`;
