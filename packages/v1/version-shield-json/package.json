@@ -1,6 +1,6 @@
 {
   "name": "abap-package-version-shield",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Custom handler for shields.io to display abap package version",
   "main": "index.js",
   "repository": {
@@ -21,11 +21,11 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "eslint": "10.5.0",
+    "eslint": "10.8.0",
     "jest": "30.4.2"
   },
   "dependencies": {
-    "fast-xml-parser": "5.9.2"
+    "fast-xml-parser": "5.10.1"
   },
   "jest": {
     "testPathIgnorePatterns": [

@@ -1,6 +1,6 @@
 {
   "name": "mailgun-sender",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A web service to send emails using Mailgun",
   "type": "module",
   "main": "lib/index.js",
@@ -20,13 +20,13 @@
   "license": "MIT",
   "dependencies": {
     "form-data": "4.0.6",
-    "mailgun.js": "13.2.0",
-    "sanitize-html": "2.17.5"
+    "mailgun.js": "13.3.0",
+    "sanitize-html": "2.17.6"
   },
   "devDependencies": {
-    "@types/node": "^25.9.1",
+    "@types/node": "26.1.2",
     "@types/sanitize-html": "2.16.1",
-    "typescript": "6.0.3",
-    "vitest": "4.1.9"
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
   }
 }
