@@ -5,6 +5,8 @@
   <title>apm Tools</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; base-uri 'none'; connect-src 'self'; font-src https://fonts.gstatic.com; form-action 'self'; img-src 'self' https://img.shields.io data:; object-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; upgrade-insecure-requests">
   <meta name="author" content="Marc F. Bernard">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
@@ -18,7 +20,7 @@
 <body>
   <div class="container">
     <div class="center">
-      <object data="assets/images/apm_banner.svg" height="80"></object>
+      <img src="assets/images/apm_banner.svg" height="80" alt="apm">
       <p class="banner-text">🎁 Free Services for Open Source ABAP 🎁</p>
     </div>
 
@@ -75,7 +77,7 @@
     <div class="relative">
       <div id="mailgun-result"></div>
       <div>
-        <button id="copy-mailgun-btn" class="copy-btn" onclick="copyToClipboard('mailgun-result')">
+        <button id="copy-mailgun-btn" class="copy-btn" data-copy-target="mailgun-result">
           Copy to Clipboard
         </button>
       </div>

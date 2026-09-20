@@ -22,3 +22,8 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+document.addEventListener('click', event => {
+  const button = event.target.closest('[data-copy-target]');
+  if (!button) return;
+  copyToClipboard(button.dataset.copyTarget);
+});
