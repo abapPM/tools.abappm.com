@@ -12,7 +12,7 @@ function parseXml(xmlStr) {
         const xmlObj = parser.parse(xmlStr);
         return xmlObj;
     } catch (error) {
-        throw Error('apack xml parsing error');
+        throw Error('apack xml parsing error', { cause: error });
     }
 }
 

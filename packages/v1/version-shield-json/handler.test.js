@@ -1,11 +1,22 @@
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+
 const handler = require('./handler');
 
-jest.mock('https');
 const { PassThrough } = require('stream');
 const EventEmitter = require('events');
 const https = require('https');
 
-https.get.mockImplementation((url, handler) => {
+beforeEach(() => {
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(https, 'get').mockImplementation(mockGet);
+});
+
+afterEach(() => {
+    vi.restoreAllMocks();
+});
+
+function mockGet(url, handler) {
     const resMock = new PassThrough();
     resMock.statusCode = 200;
     handler(resMock);
@@ -53,7 +64,7 @@ https.get.mockImplementation((url, handler) => {
 
     const reqMock = new EventEmitter();
     return reqMock;
-});
+}
 
 describe('test with path params', () => {
     test('should work with normal request (github)', async () => {
@@ -65,11 +76,6 @@ describe('test with path params', () => {
             },
         };
         const context = {};
-
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
 
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 200,
@@ -100,11 +106,6 @@ describe('test with path params', () => {
         };
         const context = {};
 
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
-
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 200,
             headers: {
@@ -133,11 +134,6 @@ describe('test with path params', () => {
             },
         };
         const context = {};
-
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
 
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 200,
@@ -168,11 +164,6 @@ describe('test with path params', () => {
         };
         const context = {};
 
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
-
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 200,
             headers: {
@@ -200,11 +191,6 @@ describe('test with path params', () => {
         };
         const context = {};
 
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
-
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 400,
             headers: {
@@ -227,11 +213,6 @@ describe('test with path params', () => {
             },
         };
         const context = {};
-
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
 
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 400,
@@ -257,11 +238,6 @@ describe('test with apack', () => {
             },
         };
         const context = {};
-
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
 
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 200,
@@ -291,11 +267,6 @@ describe('test with apack', () => {
             },
         };
         const context = {};
-
-        global.console = {
-            log: jest.fn(),
-            error: jest.fn(),
-        };
 
         await expect(handler.getShieldJson(event, context)).resolves.toEqual({
             statusCode: 200,

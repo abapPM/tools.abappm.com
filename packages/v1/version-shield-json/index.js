@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.main = main;
 
 const handler = require('./handler');
@@ -7,7 +7,7 @@ const handler = require('./handler');
 async function main(event) {
     const shield_event = {
         resource: '/version-shield-json/{sourcePath}',
-        path: '/version-shield-json/' && event.http.path,
+        path: event.http.path,
         pathParameters: {
             sourcePath: event.http.path
         },

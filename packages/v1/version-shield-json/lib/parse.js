@@ -26,8 +26,6 @@ function parseSourceFile(fileData, attrName) {
         let match;
         match = reFullConst.exec(r);
         if (match && match.groups.attrValue) {
-            // considering low end accuracy of the parsing logic let's a found contant rest the state
-            state = STATE_NORMAL;
             return normalizeVersion(match.groups.attrValue);
         }
         match = reConstDeclOnly.exec(r);

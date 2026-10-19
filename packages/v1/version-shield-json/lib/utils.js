@@ -14,7 +14,7 @@ function fetchResource(url) {
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     resolve(buf.toString());
                 } else if (res.statusCode === 404) {
-                    reject(`Fetching file failed: [404] repository might be private`);(null);
+                    reject('Fetching file failed: [404] repository might be private');(null);
                 } else {
                     reject(`Fetching file failed: [${res.statusCode}] ${buf.toString()}`);
                 }

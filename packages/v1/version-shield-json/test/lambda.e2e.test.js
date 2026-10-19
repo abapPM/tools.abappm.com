@@ -1,3 +1,5 @@
+import { expect, test } from 'vitest';
+
 // const allowedTargets = new Set(['dev', 'qa']);
 // const PREFIX = allowedTargets.has(process.env.E2E_TARGET)
 //     ? `${process.env.E2E_TARGET}-`

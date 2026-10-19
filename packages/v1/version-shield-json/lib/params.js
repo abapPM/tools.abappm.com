@@ -7,7 +7,7 @@ function unescape(str) {
     return str.replace(/%23/g, '#'); // namespace delimiter
 }
 
-// Source path format: 
+// Source path format:
 // /$TYPE/$OWNER/$REPO/$PATH/$CONSTANT_NAME
 // or
 // /$TYPE/$OWNER/$REPO/$PATH/.apack-manifest.xml
