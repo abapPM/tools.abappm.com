@@ -38,6 +38,14 @@ test('should getVersionFromApack', () => {
     expect(getVersionFromApack(XML_SAMPLE)).toBe('0.2'); // Note: This version will fail with invalid format (in parse.js)
 });
 
+test('rejects excessive XML nesting before extracting versions or dependencies', () => {
+    const nestedXml = XML_SAMPLE.replace('<DATA>', '<DATA>' + '<nested>\n'.repeat(21))
+        .replace('</DATA>', '</nested>\n'.repeat(21) + '</DATA>');
+    expect(() => getVersionFromApack(nestedXml)).toThrow('apack xml parsing error');
+    expect(() => getDependencyVersionFromApack(nestedXml, 'sap.com/abap-platform-xx'))
+        .toThrow('apack xml parsing error');
+});
+
 test('should fail on incorrect XML', () => {
     const malformedXml = XML_SAMPLE.replace('VERSION', 'NOTVERSION');
     expect(() => getVersionFromApack(malformedXml))

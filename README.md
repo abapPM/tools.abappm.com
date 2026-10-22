@@ -87,6 +87,8 @@ https://shield.abappm.com/github/ABAP-Logger/demos/.apack-manifest.xml/dependenc
 
 ### API Response
 
+Repository files are limited to 1 MiB. Downloads must finish within 750 ms, and APACK XML may contain at most 20 nested tags. HTTP errors, oversized files, incomplete downloads, and timeouts return an error response.
+
 Example:
 
 ```json

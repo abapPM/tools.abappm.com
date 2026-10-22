@@ -7,6 +7,7 @@ function parseXml(xmlStr) {
         const parser = new XMLParser({
             ignoreAttributes: true,
             parseTagValue: false,
+            maxNestedTags: 20,
             // arrayMode: false, ??? isArray (see docs)
         });
         const xmlObj = parser.parse(xmlStr);

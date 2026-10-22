@@ -2,28 +2,75 @@
 
 const https = require('https');
 
+const MAX_RESOURCE_BYTES = 1024 * 1024;
+// Leave time to parse and respond before the function's 1000 ms platform limit.
+const RESOURCE_TIMEOUT_MS = 750;
+
 function fetchResource(url) {
     return new Promise((resolve, reject) => {
-        let buf = Buffer.from([]);
-        const request = https.get(url, res => {
-            console.log(`fetch statusCode: ${res.statusCode}`);
-            res.on('data', data => {
-                buf = Buffer.concat([buf, data]);
-            });
-            res.on('end', () => {
-                if (res.statusCode >= 200 && res.statusCode < 300) {
-                    resolve(buf.toString());
-                } else if (res.statusCode === 404) {
-                    reject('Fetching file failed: [404] repository might be private');(null);
-                } else {
-                    reject(`Fetching file failed: [${res.statusCode}] ${buf.toString()}`);
-                }
-            });
-        });
-        request.on('error', error => {
-            console.error(error);
+        const chunks = [];
+        let bytes = 0;
+        let settled = false;
+        let request;
+        let response;
+        // An absolute deadline also covers DNS, connection setup and slow trickles.
+        const deadline = setTimeout(() => fail(Error('Fetching file timed out')), RESOURCE_TIMEOUT_MS);
+
+        function fail(error) {
+            if (settled) return;
+            settled = true;
+            clearTimeout(deadline);
+            chunks.length = 0;
             reject(error);
-        });
+            if (response) response.destroy();
+            if (request) request.destroy();
+        }
+
+        try {
+            request = https.get(url, res => {
+                response = res;
+                res.on('error', fail);
+                if (settled) {
+                    res.destroy();
+                    return;
+                }
+                console.log(`fetch statusCode: ${res.statusCode}`);
+                if (!(res.statusCode >= 200 && res.statusCode < 300)) {
+                    const detail = res.statusCode === 404 ? ' repository might be private' : '';
+                    fail(Error(`Fetching file failed: [${res.statusCode}]${detail}`));
+                    return;
+                }
+                if (Number(res.headers['content-length']) > MAX_RESOURCE_BYTES) {
+                    fail(Error('Fetching file failed: response exceeds 1 MiB limit'));
+                    return;
+                }
+                res.on('data', data => {
+                    if (settled) return;
+                    bytes += data.length;
+                    if (bytes > MAX_RESOURCE_BYTES) {
+                        fail(Error('Fetching file failed: response exceeds 1 MiB limit'));
+                        return;
+                    }
+                    chunks.push(data);
+                });
+                res.on('end', () => {
+                    if (settled) return;
+                    settled = true;
+                    clearTimeout(deadline);
+                    resolve(Buffer.concat(chunks, bytes).toString());
+                    chunks.length = 0;
+                });
+                res.on('aborted', () => fail(Error('Fetching file failed: response aborted')));
+                res.on('close', () => {
+                    if (!settled) fail(Error('Fetching file failed: response closed before completion'));
+                });
+            });
+            request.on('error', fail);
+            // Also support a response callback that fails before https.get returns.
+            if (settled) request.destroy();
+        } catch (error) {
+            fail(error);
+        }
     });
 }
 
