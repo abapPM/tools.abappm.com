@@ -19,6 +19,7 @@ afterEach(() => {
 function mockGet(url, handler) {
     const resMock = new PassThrough();
     resMock.statusCode = 200;
+    resMock.headers = {};
     handler(resMock);
     if (url === 'https://raw.githubusercontent.com/sbcgua/mockup_loader/master/src/zif_mockup_loader.intf.abap') {
         resMock.write('interface zif_mockup_loader.');
@@ -65,6 +66,66 @@ function mockGet(url, handler) {
     const reqMock = new EventEmitter();
     return reqMock;
 }
+
+describe('bounded downloads through every provider and parser', () => {
+    const apack = `<asx:abap>
+<asx:values>
+<DATA>
+<VERSION>1.2.3</VERSION>
+<DEPENDENCIES>
+<item>
+<GROUP_ID>example.com</GROUP_ID>
+<ARTIFACT_ID>dependency</ARTIFACT_ID>
+<VERSION>1.2.3</VERSION>
+</item>
+</DEPENDENCIES>
+</DATA>
+</asx:values>
+</asx:abap>
+`;
+    const cases = ['github', 'gitlab', 'bitbucket'].flatMap(provider => [
+        [provider, 'src/zif_version.intf.abap/version', "constants version type string value '1.2.3'."],
+        [provider, '.apack-manifest.xml', apack],
+        [provider, '.apack-manifest.xml/dependencies/example.com/dependency', apack],
+    ]);
+
+    function download(body) {
+        const response = new PassThrough();
+        response.statusCode = 200;
+        response.headers = {};
+        const request = new EventEmitter();
+        request.destroy = vi.fn();
+        https.get.mockImplementationOnce((url, callback) => {
+            queueMicrotask(() => {
+                callback(response);
+                response.end(body);
+            });
+            return request;
+        });
+        return { request, response };
+    }
+
+    test.each(cases)('accepts a bounded %s %s file', async (provider, file, body) => {
+        const { request } = download(body);
+        const result = await handler.getShieldJson({
+            pathParameters: { sourcePath: `${provider}/owner/repo/${file}` },
+        }, {});
+        expect(result.statusCode).toBe(200);
+        expect(JSON.parse(result.body).message).toBe('v1.2.3');
+        expect(request.destroy).not.toHaveBeenCalled();
+    });
+
+    test.each(cases)('rejects an oversized %s %s file before parsing', async (provider, file) => {
+        const { request, response } = download(Buffer.alloc(1024 * 1024 + 1, 'x'));
+        const result = await handler.getShieldJson({
+            pathParameters: { sourcePath: `${provider}/owner/repo/${file}` },
+        }, {});
+        expect(result.statusCode).toBe(400);
+        expect(JSON.parse(result.body).message).toBe('Error: Fetching file failed: response exceeds 1 MiB limit');
+        expect(response.destroyed).toBe(true);
+        expect(request.destroy).toHaveBeenCalledOnce();
+    });
+});
 
 describe('test with path params', () => {
     test('should work with normal request (github)', async () => {
